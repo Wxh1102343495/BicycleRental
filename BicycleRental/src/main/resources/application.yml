@@ -1,0 +1,26 @@
+server:
+  port: 9001
+
+# 数据源配置
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/BicycleRental?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      #下面为连接池设置，应用到上面的数据源中（一些最基本的设置）
+      #初始大小
+      initialSize: 5
+      #最小
+      minIdle: 5
+      #最大
+      maxActive: 20
+      #获取连接等待超时时间
+      maxWait: 60000
+
+# Swagger配置
+swagger:
+  # 是否开启swagger
+  enabled: true
