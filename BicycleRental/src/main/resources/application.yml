@@ -1,7 +1,7 @@
 server:
   port: 9001
 
-# Êı¾İÔ´ÅäÖÃ
+# æ•°æ®æºé…ç½®
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -10,17 +10,26 @@ spring:
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
-      #ÏÂÃæÎªÁ¬½Ó³ØÉèÖÃ£¬Ó¦ÓÃµ½ÉÏÃæµÄÊı¾İÔ´ÖĞ£¨Ò»Ğ©×î»ù±¾µÄÉèÖÃ£©
-      #³õÊ¼´óĞ¡
+      #ä¸‹é¢ä¸ºè¿æ¥æ± è®¾ç½®ï¼Œåº”ç”¨åˆ°ä¸Šé¢çš„æ•°æ®æºä¸­ï¼ˆä¸€äº›æœ€åŸºæœ¬çš„è®¾ç½®ï¼‰
+      #åˆå§‹å¤§å°
       initialSize: 5
-      #×îĞ¡
+      #æœ€å°
       minIdle: 5
-      #×î´ó
+      #æœ€å¤§
       maxActive: 20
-      #»ñÈ¡Á¬½ÓµÈ´ı³¬Ê±Ê±¼ä
+      #è·å–è¿æ¥ç­‰å¾…è¶…æ—¶æ—¶é—´
       maxWait: 60000
 
-# SwaggerÅäÖÃ
+# Swaggeré…ç½®
 swagger:
-  # ÊÇ·ñ¿ªÆôswagger
+  # æ˜¯å¦å¼€å¯swagger
   enabled: true
+
+# MyBatisé…ç½®
+mybatis:
+  # æœç´¢æŒ‡å®šåŒ…åˆ«å
+  typeAliasesPackage: com.wxh.**.entity
+  # é…ç½®mapperçš„æ‰«æï¼Œæ‰¾åˆ°æ‰€æœ‰çš„mapper.xmlæ˜ å°„æ–‡ä»¶
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+  # åŠ è½½å…¨å±€çš„é…ç½®æ–‡ä»¶
+  configLocation: classpath:mybatis/mybatis-config.xml
