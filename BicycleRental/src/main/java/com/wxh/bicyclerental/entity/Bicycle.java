@@ -1,6 +1,8 @@
 package com.wxh.bicyclerental.entity;
 
-public class Bicycle {
+import java.io.Serializable;
+
+public class Bicycle implements Serializable {
     //自行车编码
     private Integer bicycleCode;
     //所在停车点id
@@ -91,5 +93,18 @@ public class Bicycle {
     public void setState(Integer state) {
         this.state = state;
     }
-
+    @Override
+    public String toString() {
+        return "Bicycle{" +
+                "bicycleCode=" + bicycleCode +
+                ", locationId=" + locationId +
+                ", bicycleName='" + bicycleName + '\'' +
+                ", photo='" + photo + '\'' +
+                ", describe='" + describe + '\'' +
+                ", hourRent=" + hourRent +
+                ", dayRent=" + dayRent +
+                ", monthRent=" + monthRent +
+                ", state=" + state +
+                '}';
+    }
 }

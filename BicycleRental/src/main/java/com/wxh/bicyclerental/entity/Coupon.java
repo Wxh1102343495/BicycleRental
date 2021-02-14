@@ -1,6 +1,8 @@
 package com.wxh.bicyclerental.entity;
 
-public class Coupon {
+import java.io.Serializable;
+
+public class Coupon implements Serializable {
     //优惠券id
     private Integer couponId;
     //优惠券名字
@@ -50,5 +52,16 @@ public class Coupon {
 
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Coupon{" +
+                "couponId=" + couponId +
+                ", couponName='" + couponName + '\'' +
+                ", couponDescribe='" + couponDescribe + '\'' +
+                ", discount=" + discount +
+                ", price=" + price +
+                '}';
     }
 }

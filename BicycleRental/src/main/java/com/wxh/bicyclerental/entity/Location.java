@@ -1,6 +1,8 @@
 package com.wxh.bicyclerental.entity;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
     private Integer id;
     //省份
     private String province;
@@ -49,5 +51,16 @@ public class Location {
 
     public void setLocationInfo(String locationInfo) {
         this.locationInfo = locationInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id=" + id +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", locationInfo='" + locationInfo + '\'' +
+                '}';
     }
 }

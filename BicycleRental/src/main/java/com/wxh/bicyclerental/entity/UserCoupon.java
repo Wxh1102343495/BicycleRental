@@ -1,6 +1,8 @@
 package com.wxh.bicyclerental.entity;
 
-public class UserCoupon {
+import java.io.Serializable;
+
+public class UserCoupon implements Serializable {
     private Integer id;
     //用户id
     private Integer userId;
@@ -29,5 +31,14 @@ public class UserCoupon {
 
     public void setCouponId(Integer couponId) {
         this.couponId = couponId;
+    }
+
+    @Override
+    public String toString() {
+        return "UserCoupon{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", couponId=" + couponId +
+                '}';
     }
 }

@@ -1,8 +1,9 @@
 package com.wxh.bicyclerental.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Order {
+public class Order implements Serializable {
     //订单编号
     private Integer orderId;
     //用户id
@@ -82,5 +83,19 @@ public class Order {
 
     public void setEvaluation(String evaluation) {
         this.evaluation = evaluation;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", userId=" + userId +
+                ", bicycleId=" + bicycleId +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", rant=" + rant +
+                ", state=" + state +
+                ", evaluation='" + evaluation + '\'' +
+                '}';
     }
 }

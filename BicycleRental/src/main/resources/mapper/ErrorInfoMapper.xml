@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxh.bicyclerental.mapper.ErrorInfoMapper">
+    <resultMap type="ErrorInfo" id="error_infoResultMap">
+        <id column="id" property="id"/>
+        <result column="user_id" property="user_id"/>
+        <result column="bicycle_id" property="bicycle_id"/>
+        <result column="describe" property="describe"/>
+        <result column="state" property="state"/>
+    </resultMap>
+    <select id="selectOne" parameterType="Integer" resultType="ErrorInfo">
+		select * from error_info where id=#{0}
+	</select>
+    <select id="select" resultMap="error_infoResultMap">
+		select * from error_info
+	</select>
+    <insert id="insert" parameterType="ErrorInfo">
+		insert into error_info(user_id,bicycle_id,describe,state) values(#{user_id},#{bicycle_id},#{describe},#{state})
+	</insert>
+    <delete id="delete" parameterType="Integer">
+		delete from error_info where id=#{0}
+	</delete>
+    <update id="update" parameterType="ErrorInfo">
+		update error_info set user_id=#{user_id},bicycle_id=#{bicycle_id},describe=#{describe},state=#{state} where id=#{id}
+	</update>
+</mapper>

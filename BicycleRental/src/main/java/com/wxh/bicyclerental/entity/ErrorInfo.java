@@ -1,6 +1,8 @@
 package com.wxh.bicyclerental.entity;
 
-public class ErrorInfo {
+import java.io.Serializable;
+
+public class ErrorInfo implements Serializable {
 
     private Integer id;
     //用户id
@@ -50,5 +52,16 @@ public class ErrorInfo {
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "ErrorInfo{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", bicycleId=" + bicycleId +
+                ", describe='" + describe + '\'' +
+                ", state=" + state +
+                '}';
     }
 }

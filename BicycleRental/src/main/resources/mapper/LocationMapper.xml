@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxh.bicyclerental.mapper.LocationMapper">
+    <resultMap type="Location" id="locationResultMap">
+        <id column="id" property="id"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="area" property="area"/>
+        <result column="location_info" property="location_info"/>
+    </resultMap>
+    <select id="selectOne" parameterType="Integer" resultType="Location">
+		select * from location where id=#{0}
+	</select>
+    <select id="select" resultMap="locationResultMap">
+		select * from location
+	</select>
+    <insert id="insert" parameterType="Location">
+		insert into location(province,city,area,location_info) values(#{province},#{city},#{area},#{location_info})
+	</insert>
+    <delete id="delete" parameterType="Integer">
+		delete from location where id=#{0}
+	</delete>
+    <update id="update" parameterType="Location">
+		update location set province=#{province},city=#{city},area=#{area},location_info=#{location_info} where id=#{id}
+	</update>
+</mapper>

@@ -1,6 +1,8 @@
 package com.wxh.bicyclerental.entity;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     //主键
     private Integer id;
     //用户名
@@ -14,7 +16,7 @@ public class User {
     //身份证号
     private String idNumber;
     //电话号
-    private Integer phoneNumber;
+    private String phoneNumber;
     //电子邮箱
     private String email;
     //状态（0/1）
@@ -68,14 +70,13 @@ public class User {
         return this.idNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return this.phoneNumber;
     }
-
 
 
     public void setEmail(String email) {
@@ -87,12 +88,26 @@ public class User {
     }
 
 
-
     public void setState(Integer state) {
         this.state = state;
     }
 
     public Integer getState() {
         return this.state;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", identity='" + identity + '\'' +
+                ", name='" + name + '\'' +
+                ", idNumber='" + idNumber + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
+                ", state=" + state +
+                '}';
     }
 }
