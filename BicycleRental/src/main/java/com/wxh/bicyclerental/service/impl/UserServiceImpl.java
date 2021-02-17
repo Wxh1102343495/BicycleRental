@@ -43,4 +43,9 @@ public class UserServiceImpl implements IUserService {
     public int updateIdentity(User user) {
         return userMapper.updateIdentity(user);
     }
+
+    @Override
+    public User selectByUserName(String userName) {
+        return userMapper.selectByUserName(userName);
+    }
 }

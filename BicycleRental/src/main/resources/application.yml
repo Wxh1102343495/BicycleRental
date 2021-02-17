@@ -24,6 +24,7 @@ spring:
 swagger:
   # 是否开启swagger
   enabled: true
+  base-package: com.wxh.bicyclerental
 
 # MyBatis配置
 mybatis:
