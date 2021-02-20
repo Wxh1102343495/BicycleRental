@@ -75,12 +75,11 @@ public class UserController {
             map.put("id", user.getId());
             map.put("password", user.getPassword());
             map.put("name", user.getName());
-            map.put("avatar", user.getName());
+            map.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
             return Result.ok().data(map);
         }
         return Result.error();
     }
-
 
     /**
      * 授权为系统管理员或取消管理员权限
