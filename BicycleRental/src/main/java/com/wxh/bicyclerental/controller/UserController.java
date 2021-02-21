@@ -26,12 +26,17 @@ public class UserController {
     /**
      * 新用户注册
      */
-    @PostMapping("/regist")
+    @PostMapping("/register")
     @ApiOperation("注册")
-    public int registerUser(@RequestBody User user) {
-        //默认是用户注册
-        user.setIdentity("user");
-        return userService.insert(user);
+    public Result registerUser(@RequestBody User user) {
+        System.out.println(user);
+        if(StringUtils.isNull(userService.selectByUserName(user.getUsername()))) {
+            //默认是用户注册
+            user.setIdentity("user");
+            userService.insert(user);
+            return Result.ok().data("注册成功");
+        }
+        return Result.error().data("该用户已存在");
     }
 
     /**

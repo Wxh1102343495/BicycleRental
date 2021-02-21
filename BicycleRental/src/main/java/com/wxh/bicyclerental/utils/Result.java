@@ -27,7 +27,7 @@ public class Result<T> {
     public static Result error() {
         Result r = new Result();
         r.setSuccess(false);
-        r.setCode(0000);
+        r.setCode(0);
         r.setMessage("失败");
         return r;
     }
