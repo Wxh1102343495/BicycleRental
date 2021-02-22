@@ -1,6 +1,8 @@
 package com.wxh.bicyclerental.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.wxh.bicyclerental.entity.User;
 import com.wxh.bicyclerental.service.IUserService;
 import com.wxh.bicyclerental.utils.JwtUtils;
@@ -75,8 +77,11 @@ public class UserController {
         // 根据id，查询用户的信息，并将他放入data数据中
         User user = userService.selectOne(memberIdByJwtToken);
         Map map = new HashMap<>();
+        ArrayList<String> rolesList = new ArrayList<String>();
+        JSONArray rolesJsonArray = new JSONArray();
         if (StringUtils.isNotNull(user)) {
-            map.put("roles", user.getIdentity());
+            rolesList.add(user.getIdentity());
+            map.put("roles", rolesJsonArray.parseArray(JSONObject.toJSONString(rolesList)));
             map.put("password", user.getPassword());
             map.put("name", user.getName());
             map.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
