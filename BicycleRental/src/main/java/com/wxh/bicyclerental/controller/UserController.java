@@ -76,9 +76,7 @@ public class UserController {
         User user = userService.selectOne(memberIdByJwtToken);
         Map map = new HashMap<>();
         if (StringUtils.isNotNull(user)) {
-            String roles = user.getIdentity();
-            Object[] arr = new Object[]{roles};
-            map.put("roles",arr);
+            map.put("roles", user.getIdentity());
             map.put("password", user.getPassword());
             map.put("name", user.getName());
             map.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
