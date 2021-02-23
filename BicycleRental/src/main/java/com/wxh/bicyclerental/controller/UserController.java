@@ -71,6 +71,7 @@ public class UserController {
      * @return
      */
     @GetMapping("info")
+    @ApiOperation("获取用户信息")
     public Result getInfo(HttpServletRequest request) {
         // 获取jwt解析的信息（用户的id）
         Integer memberIdByJwtToken = Integer.parseInt(JwtUtils.getMemberIdByJwtToken(request));
@@ -78,12 +79,11 @@ public class UserController {
         User user = userService.selectOne(memberIdByJwtToken);
         Map map = new HashMap<>();
         ArrayList<String> rolesList = new ArrayList<String>();
-        JSONArray rolesJsonArray = new JSONArray();
         if (StringUtils.isNotNull(user)) {
             rolesList.add(user.getIdentity());
-            map.put("roles", rolesJsonArray.parseArray(JSONObject.toJSONString(rolesList)));
+            map.put("roles", JSONArray.parseArray(JSONObject.toJSONString(rolesList)));
             map.put("password", user.getPassword());
-            map.put("name", user.getName());
+            map.put("name", user.getUsername());
             map.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
             return Result.ok().data(map);
         }
