@@ -97,13 +97,16 @@ public class UserController {
      */
     @PostMapping("/updateIdentity")
     @ApiOperation("授权或取消权限")
-    public int updateIdentity(@RequestBody User params) {
+    public Result updateIdentity(@RequestBody User params) {
         Integer id = params.getId();
         String identity = params.getIdentity();
         User user = new User();
         user.setId(id);
         user.setIdentity(identity);
-        return userService.updateIdentity(user);
+        if(userService.updateIdentity(user) != 0) {
+            return Result.ok().data("更新成功");
+        }
+        return Result.error();
     }
 
     /**
