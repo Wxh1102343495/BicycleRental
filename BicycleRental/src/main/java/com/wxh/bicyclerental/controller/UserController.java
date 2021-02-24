@@ -3,6 +3,8 @@ package com.wxh.bicyclerental.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wxh.bicyclerental.entity.User;
 import com.wxh.bicyclerental.service.IUserService;
 import com.wxh.bicyclerental.utils.JwtUtils;
@@ -95,15 +97,27 @@ public class UserController {
      */
     @PostMapping("/updateIdentity")
     @ApiOperation("授权或取消权限")
-    public int updateIdentity(@RequestBody String str) {
-        //获取请求中的id
-        Integer userId = Integer.parseInt(JSON.parseObject(str).get("id").toString());
-        //获取请求中的identity
-        String identity = JSON.parseObject(str).get("identity").toString();
-        //List<User> userId = JSON.parseArray(JSON.parseObject(str).getString("userApplyDetailInfos"), User.class);
+    public int updateIdentity(@RequestBody User params) {
+        Integer id = params.getId();
+        String identity = params.getIdentity();
         User user = new User();
-        user.setId(userId);
+        user.setId(id);
         user.setIdentity(identity);
         return userService.updateIdentity(user);
+    }
+
+    /**
+     * 分页查询用户信息
+     */
+    @GetMapping("/pageQueryUser")
+    @ApiOperation("分页查询用户信息")
+    public Result pageQueryUser(@RequestParam int pageNo, @RequestParam int pageSize) {
+        Map map = new HashMap<>();
+        //使用PageHelper分页插件
+        PageHelper.offsetPage(pageNo, pageSize);
+        PageInfo<User> userList = PageInfo.of(userService.selectUserByPage());
+        map.put("total",userList.getTotal() );
+        map.put("data", userList.getList());
+        return Result.ok().data(map);
     }
 }

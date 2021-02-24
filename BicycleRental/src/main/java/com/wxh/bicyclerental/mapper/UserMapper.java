@@ -14,4 +14,9 @@ public interface UserMapper {
     public int update(User user);
     public int updateIdentity(User user);
     public User selectByUserName(String userName);
+    /**
+     * 分页查询用户
+     * @return
+     */
+    List<User> selectUserByPage();
 }

@@ -14,4 +14,8 @@ public interface IUserService {
     public int updateIdentity(User user);
     //根据用户名查密码
     public User selectByUserName(String userName);
+    /**
+     * 分页查询接口
+     */
+    List<User> selectUserByPage();
 }
