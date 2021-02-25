@@ -50,7 +50,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<User> selectUserByPage() {
-        return userMapper.selectUserByPage();
+    public List<User> selectUserByIdentity(String identity) {
+        return userMapper.selectUserByIdentity(identity);
     }
 }

@@ -110,15 +110,15 @@ public class UserController {
     }
 
     /**
-     * 分页查询用户信息
+     * 分页查询指定权限用户信息
      */
     @GetMapping("/pageQueryUser")
     @ApiOperation("分页查询用户信息")
-    public Result pageQueryUser(@RequestParam int pageNo, @RequestParam int pageSize) {
+    public Result pageQueryUser(@RequestParam int pageNo, @RequestParam int pageSize ,@RequestParam String identity) {
         Map map = new HashMap<>();
         //使用PageHelper分页插件
         PageHelper.offsetPage(pageNo, pageSize);
-        PageInfo<User> userList = PageInfo.of(userService.selectUserByPage());
+        PageInfo<User> userList = PageInfo.of(userService.selectUserByIdentity(identity));
         map.put("total",userList.getTotal() );
         map.put("data", userList.getList());
         return Result.ok().data(map);

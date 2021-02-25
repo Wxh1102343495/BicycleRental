@@ -22,8 +22,8 @@
     <select id="selectByUserName" parameterType="String" resultType="User">
 		select id,password from user where username=#{0}
 	</select>
-    <select id="selectUserByPage" resultMap="userResultMap">
-		select * from user
+    <select id="selectUserByIdentity" parameterType="String" resultMap="userResultMap">
+		select * from user where identity =#{0}
 	</select>
     <insert id="insert" parameterType="User">
 		insert into user(username,password,identity,name,id_number,phone_number,email) values(#{username},#{password},#{identity},#{name},#{idNumber},#{phoneNumber},#{email})
