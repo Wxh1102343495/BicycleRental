@@ -34,7 +34,7 @@ public class UserController {
     @ApiOperation("注册")
     public Result registerUser(@RequestBody User user) {
         System.out.println(user);
-        if(StringUtils.isNull(userService.selectByUserName(user.getUsername()))) {
+        if (StringUtils.isNull(userService.selectByUserName(user.getUsername()))) {
             //默认是用户注册
             user.setIdentity("user");
             userService.insert(user);
@@ -103,7 +103,7 @@ public class UserController {
         User user = new User();
         user.setId(id);
         user.setIdentity(identity);
-        if(userService.updateIdentity(user) != 0) {
+        if (userService.updateIdentity(user) != 0) {
             return Result.ok().data("更新成功");
         }
         return Result.error();
@@ -113,14 +113,28 @@ public class UserController {
      * 分页查询指定权限用户信息
      */
     @GetMapping("/pageQueryUser")
-    @ApiOperation("分页查询用户信息")
-    public Result pageQueryUser(@RequestParam int pageNo, @RequestParam int pageSize ,@RequestParam String identity) {
+    @ApiOperation("分页查询指定权限用户信息")
+    public Result pageQueryUser(@RequestParam int pageNo, @RequestParam int pageSize, @RequestParam String identity) {
         Map map = new HashMap<>();
         //使用PageHelper分页插件
         PageHelper.offsetPage(pageNo, pageSize);
         PageInfo<User> userList = PageInfo.of(userService.selectUserByIdentity(identity));
-        map.put("total",userList.getTotal() );
+        map.put("total", userList.getTotal());
         map.put("data", userList.getList());
         return Result.ok().data(map);
+    }
+
+    /**
+     * 查询所有用户信息
+     */
+    @GetMapping("/queryUser")
+    @ApiOperation("查询所有用户信息")
+    public Result queryUser() {
+        List<User> userList = userService.select();
+        if (null == userList || userList.size() == 0) {
+            return Result.error().data("查询失败");
+        } else {
+            return Result.ok().data(userList);
+        }
     }
 }
