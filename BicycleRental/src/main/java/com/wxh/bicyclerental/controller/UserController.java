@@ -137,4 +137,18 @@ public class UserController {
             return Result.ok().data(userList);
         }
     }
+
+    /**
+     * 根据用户名查询用户信息
+     */
+    @GetMapping("/queryUserByUserName")
+    @ApiOperation("根据用户名查询用户信息")
+    public Result queryUserByUserName(@RequestParam String username) {
+        User user = userService.selectByUserName(username);
+        if(StringUtils.isNotNull(user)) {
+            return Result.ok().data(user);
+        }else {
+            return Result.error().data("查询失败");
+        }
+    }
 }
