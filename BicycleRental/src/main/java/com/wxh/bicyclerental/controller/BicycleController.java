@@ -23,6 +23,7 @@ public class BicycleController {
     @PostMapping("/addBicycle")
     @ApiOperation("新车录入")
     public Result addBicycle(@RequestBody Bicycle bicycle) {
+        bicycle.setState(1);
         return null;
     }
 }
