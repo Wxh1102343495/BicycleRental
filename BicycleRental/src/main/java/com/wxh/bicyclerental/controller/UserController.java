@@ -151,4 +151,17 @@ public class UserController {
             return Result.error().data("查询失败");
         }
     }
+
+    /**
+     * 更新用户信息
+     */
+    @PostMapping("/updateUser")
+    @ApiOperation("更新用户信息")
+    public Result updateUser(@RequestBody User params) {
+       if(userService.update(params)>0) {
+           return Result.ok().data("更新成功");
+       }else {
+           return Result.error().data("更新失败");
+       }
+    }
 }
