@@ -3,16 +3,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wxh.bicyclerental.mapper.BicycleMapper">
     <resultMap type="Bicycle" id="bicycleResultMap">
-        <id column="bicycle_code" property="bicycle_code"/>
-        <result column="location_id" property="location_id"/>
-        <result column="bicycle_name" property="bicycle_name"/>
+        <id column="bicycle_code" property="bicycleCode"/>
+        <result column="location_id" property="locationId"/>
+        <result column="bicycle_name" property="bicycleName"/>
         <result column="photo" property="photo"/>
         <result column="describe" property="describe"/>
-        <result column="hour_rent" property="hour_rent"/>
-        <result column="day_rent" property="day_rent"/>
-        <result column="month_rent" property="month_rent"/>
+        <result column="hour_rent" property="hourRent"/>
+        <result column="day_rent" property="dayRent"/>
+        <result column="month_rent" property="monthRent"/>
         <result column="state" property="state"/>
-        <result column="remarks" property="remarks"/>
     </resultMap>
     <select id="selectOne" parameterType="Integer" resultType="Bicycle">
 		select * from bicycle where bicycle_code=#{0}
@@ -21,12 +20,12 @@
 		select * from bicycle
 	</select>
     <insert id="insert" parameterType="Bicycle">
-		insert into bicycle(location_id,bicycle_name,photo,describe,hour_rent,day_rent,month_rent,state,remarks) values(#{location_id},#{bicycle_name},#{photo},#{describe},#{hour_rent},#{day_rent},#{month_rent},#{state},#{remarks})
+		insert into bicycle(location_id,bicycle_name,photo,describe,hour_rent,day_rent,month_rent,state) values(#{location_id},#{bicycle_name},#{photo},#{describe},#{hour_rent},#{day_rent},#{month_rent},#{state})
 	</insert>
     <delete id="delete" parameterType="Integer">
 		delete from bicycle where bicycle_code=#{0}
 	</delete>
     <update id="update" parameterType="Bicycle">
-		update bicycle set location_id=#{location_id},bicycle_name=#{bicycle_name},photo=#{photo},describe=#{describe},hour_rent=#{hour_rent},day_rent=#{day_rent},month_rent=#{month_rent},state=#{state},remarks=#{remarks} where bicycle_code=#{bicycle_code}
+		update bicycle set location_id=#{location_id},bicycle_name=#{bicycle_name},photo=#{photo},describe=#{describe},hour_rent=#{hour_rent},day_rent=#{day_rent},month_rent=#{month_rent},state=#{state} where bicycle_code=#{bicycle_code}
 	</update>
 </mapper>

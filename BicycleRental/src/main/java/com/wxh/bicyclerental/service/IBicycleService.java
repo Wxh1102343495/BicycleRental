@@ -1,12 +1,10 @@
-package com.wxh.bicyclerental.mapper;
+package com.wxh.bicyclerental.service;
 
 import com.wxh.bicyclerental.entity.Bicycle;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface BicycleMapper {
+public interface IBicycleService {
     public Bicycle selectOne(Integer bicycleCode);
     public List<Bicycle> select();
     public int insert(Bicycle bicycle);

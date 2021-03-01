@@ -33,7 +33,6 @@ public class UserController {
     @PostMapping("/register")
     @ApiOperation("注册")
     public Result registerUser(@RequestBody User user) {
-        System.out.println(user);
         if (StringUtils.isNull(userService.selectByUserName(user.getUsername()))) {
             //默认是用户注册
             user.setIdentity("user");
