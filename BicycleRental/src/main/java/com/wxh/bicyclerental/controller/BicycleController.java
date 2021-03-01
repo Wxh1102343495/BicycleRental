@@ -2,6 +2,7 @@ package com.wxh.bicyclerental.controller;
 
 import com.wxh.bicyclerental.entity.Bicycle;
 import com.wxh.bicyclerental.service.IBicycleService;
+import com.wxh.bicyclerental.utils.CodeUtil;
 import com.wxh.bicyclerental.utils.Result;
 import com.wxh.bicyclerental.utils.StringUtils;
 import io.swagger.annotations.Api;
@@ -23,7 +24,15 @@ public class BicycleController {
     @PostMapping("/addBicycle")
     @ApiOperation("新车录入")
     public Result addBicycle(@RequestBody Bicycle bicycle) {
+        //设置状态为1
         bicycle.setState(1);
-        return null;
+        //生辰16位id
+        Long id = CodeUtil.RundCode();
+        if(bicycleService.insert(bicycle)>1) {
+            return Result.ok().data("添加成功");
+        }else {
+            return Result.error().data("添加失败");
+
+        }
     }
 }

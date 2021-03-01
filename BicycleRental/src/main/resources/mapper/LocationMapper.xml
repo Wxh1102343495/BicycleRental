@@ -7,7 +7,7 @@
         <result column="province" property="province"/>
         <result column="city" property="city"/>
         <result column="area" property="area"/>
-        <result column="location_info" property="location_info"/>
+        <result column="location_info" property="locationInfo"/>
     </resultMap>
     <select id="selectOne" parameterType="Integer" resultType="Location">
 		select * from location where id=#{0}

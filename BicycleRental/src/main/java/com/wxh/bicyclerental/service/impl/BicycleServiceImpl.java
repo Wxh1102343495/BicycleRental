@@ -14,7 +14,7 @@ public class BicycleServiceImpl implements IBicycleService {
     private BicycleMapper bicycleMapper;
 
     @Override
-    public Bicycle selectOne(Integer bicycleCode) {
+    public Bicycle selectOne(Long bicycleCode) {
         return bicycleMapper.selectOne(bicycleCode);
     }
 
@@ -29,7 +29,7 @@ public class BicycleServiceImpl implements IBicycleService {
     }
 
     @Override
-    public int delete(Integer bicycleCode) {
+    public int delete(Long bicycleCode) {
         return bicycleMapper.delete(bicycleCode);
     }
 

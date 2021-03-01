@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Bicycle implements Serializable {
     //自行车编码
-    private Integer bicycleCode;
+    private Long bicycleCode;
     //所在停车点id
     private Integer locationId;
     //自行车名字
@@ -22,11 +22,11 @@ public class Bicycle implements Serializable {
     //自行车状态（0/1/2）
     private Integer state;
 
-    public Integer getBicycleCode() {
+    public Long getBicycleCode() {
         return bicycleCode;
     }
 
-    public void setBicycleCode(Integer bicycleCode) {
+    public void setBicycleCode(Long bicycleCode) {
         this.bicycleCode = bicycleCode;
     }
 

@@ -5,9 +5,9 @@ import com.wxh.bicyclerental.entity.Bicycle;
 import java.util.List;
 
 public interface IBicycleService {
-    public Bicycle selectOne(Integer bicycleCode);
+    public Bicycle selectOne(Long bicycleCode);
     public List<Bicycle> select();
     public int insert(Bicycle bicycle);
-    public int delete(Integer bicycleCode);
+    public int delete(Long bicycleCode);
     public int update(Bicycle bicycle);
 }

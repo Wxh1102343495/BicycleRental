@@ -13,7 +13,7 @@
         <result column="month_rent" property="monthRent"/>
         <result column="state" property="state"/>
     </resultMap>
-    <select id="selectOne" parameterType="Integer" resultType="Bicycle">
+    <select id="selectOne" parameterType="Long" resultType="Bicycle">
 		select * from bicycle where bicycle_code=#{0}
 	</select>
     <select id="select" resultMap="bicycleResultMap">
@@ -22,7 +22,7 @@
     <insert id="insert" parameterType="Bicycle">
 		insert into bicycle(location_id,bicycle_name,photo,describe,hour_rent,day_rent,month_rent,state) values(#{location_id},#{bicycle_name},#{photo},#{describe},#{hour_rent},#{day_rent},#{month_rent},#{state})
 	</insert>
-    <delete id="delete" parameterType="Integer">
+    <delete id="delete" parameterType="Long">
 		delete from bicycle where bicycle_code=#{0}
 	</delete>
     <update id="update" parameterType="Bicycle">

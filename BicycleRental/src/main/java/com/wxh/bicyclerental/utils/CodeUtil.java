@@ -20,17 +20,14 @@ public class CodeUtil {
         return code;
     }
 
+    /**
+     * 随机生成17/18位数据id
+     *
+     * @return
+     */
     public static long UCode() {
         long code = Long.parseLong(format1.format(Calendar.getInstance().getTime()) + random.nextInt(99999999)
         );
         return code;
     }
-
-//    public static void main(String[] args) {
-//        for (int i = 0; i < 100; i++) {
-//            Long code = RundCode();
-//            System.out.println(code);
-//            System.out.println(code.toString().length());
-//        }
-//    }
 }
