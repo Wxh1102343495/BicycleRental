@@ -6,10 +6,7 @@ import com.wxh.bicyclerental.utils.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +30,19 @@ public class LocationController {
             return Result.error().data("查询失败");
         } else {
             return Result.ok().data(locationList);
+        }
+    }
+
+    /**
+     * 新增地址信息
+     */
+    @PostMapping("/addLocation")
+    @ApiOperation("新增地址信息")
+    public Result addLocation(@RequestBody Location location) {
+        if(locationService.insert(location) > 0) {
+            return Result.ok().data("添加成功");
+        }else {
+            return Result.error().data("添加失败");
         }
     }
 }

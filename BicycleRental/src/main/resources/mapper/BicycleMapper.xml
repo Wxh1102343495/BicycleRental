@@ -7,7 +7,7 @@
         <result column="location_id" property="locationId"/>
         <result column="bicycle_name" property="bicycleName"/>
         <result column="photo" property="photo"/>
-        <result column="describe" property="describe"/>
+        <result column="describ" property="describ"/>
         <result column="hour_rent" property="hourRent"/>
         <result column="day_rent" property="dayRent"/>
         <result column="month_rent" property="monthRent"/>
@@ -20,12 +20,12 @@
 		select * from bicycle
 	</select>
     <insert id="insert" parameterType="Bicycle">
-		insert into bicycle(location_id,bicycle_name,photo,describe,hour_rent,day_rent,month_rent,state) values(#{location_id},#{bicycle_name},#{photo},#{describe},#{hour_rent},#{day_rent},#{month_rent},#{state})
+		insert into bicycle(bicycle_code,location_id,bicycle_name,photo,describ,hour_rent,day_rent,month_rent,state) values(#{bicycleCode},#{locationId},#{bicycleName},#{photo},#{describ},#{hourRent},#{dayRent},#{monthRent},#{state})
 	</insert>
     <delete id="delete" parameterType="Long">
 		delete from bicycle where bicycle_code=#{0}
 	</delete>
     <update id="update" parameterType="Bicycle">
-		update bicycle set location_id=#{location_id},bicycle_name=#{bicycle_name},photo=#{photo},describe=#{describe},hour_rent=#{hour_rent},day_rent=#{day_rent},month_rent=#{month_rent},state=#{state} where bicycle_code=#{bicycle_code}
+		update bicycle set location_id=#{locationId},bicycle_name=#{bicycleName},photo=#{photo},describ=#{describ},hour_rent=#{hourRent},day_rent=#{dayRent},month_rent=#{monthRent},state=#{state} where bicycle_code=#{bicycleCode}
 	</update>
 </mapper>

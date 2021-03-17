@@ -12,7 +12,7 @@ public class Bicycle implements Serializable {
     // 照片路径
     private String photo;
     //自行车描述
-    private String describe;
+    private String describ;
     //时租费用
     private Float hourRent;
     //日租费用
@@ -54,12 +54,12 @@ public class Bicycle implements Serializable {
         this.photo = photo;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getDescrib() {
+        return describ;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setDescrib(String describ) {
+        this.describ = describ;
     }
 
     public Float getHourRent() {
@@ -100,7 +100,7 @@ public class Bicycle implements Serializable {
                 ", locationId=" + locationId +
                 ", bicycleName='" + bicycleName + '\'' +
                 ", photo='" + photo + '\'' +
-                ", describe='" + describe + '\'' +
+                ", describ='" + describ + '\'' +
                 ", hourRent=" + hourRent +
                 ", dayRent=" + dayRent +
                 ", monthRent=" + monthRent +

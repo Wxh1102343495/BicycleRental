@@ -16,12 +16,12 @@
 		select * from location
 	</select>
     <insert id="insert" parameterType="Location">
-		insert into location(province,city,area,location_info) values(#{province},#{city},#{area},#{location_info})
+		insert into location(province,city,area,location_info) values(#{province},#{city},#{area},#{locationInfo})
 	</insert>
     <delete id="delete" parameterType="Integer">
 		delete from location where id=#{0}
 	</delete>
     <update id="update" parameterType="Location">
-		update location set province=#{province},city=#{city},area=#{area},location_info=#{location_info} where id=#{id}
+		update location set province=#{province},city=#{city},area=#{area},location_info=#{locationInfo} where id=#{id}
 	</update>
 </mapper>

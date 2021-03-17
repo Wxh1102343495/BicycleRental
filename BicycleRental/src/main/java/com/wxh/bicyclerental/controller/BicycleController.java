@@ -26,9 +26,10 @@ public class BicycleController {
     public Result addBicycle(@RequestBody Bicycle bicycle) {
         //设置状态为1
         bicycle.setState(1);
-        //生辰16位id
+        //生成16位id
         Long id = CodeUtil.RundCode();
-        if(bicycleService.insert(bicycle)>1) {
+        bicycle.setBicycleCode(id);
+        if(bicycleService.insert(bicycle) > 0) {
             return Result.ok().data("添加成功");
         }else {
             return Result.error().data("添加失败");
