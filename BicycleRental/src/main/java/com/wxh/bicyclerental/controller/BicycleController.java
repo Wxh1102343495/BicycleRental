@@ -1,14 +1,18 @@
 package com.wxh.bicyclerental.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wxh.bicyclerental.entity.Bicycle;
 import com.wxh.bicyclerental.service.IBicycleService;
 import com.wxh.bicyclerental.utils.CodeUtil;
 import com.wxh.bicyclerental.utils.Result;
-import com.wxh.bicyclerental.utils.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Api
 @RestController
@@ -34,6 +38,32 @@ public class BicycleController {
         }else {
             return Result.error().data("添加失败");
 
+        }
+    }
+    /**
+     * 分页查询自行车信息
+     */
+    @GetMapping("/pageQueryBicycle")
+    @ApiOperation("分页查询自行车信息")
+    public Result pageQueryBicycle(@RequestParam int pageNo, @RequestParam int pageSize) {
+        Map map = new HashMap<>();
+        //使用PageHelper分页插件
+        PageHelper.offsetPage(pageNo, pageSize);
+        PageInfo<Bicycle> bicycleList = PageInfo.of(bicycleService.select());
+        map.put("total", bicycleList.getTotal());
+        map.put("data", bicycleList.getList());
+        return Result.ok().data(map);
+    }
+    /**
+     * 将自行车状态设为2（报废）删除操作
+     */
+    @GetMapping("/removeBicycle")
+    @ApiOperation("删除自行车")
+    public Result removeBicycle(@RequestParam Long bicycleCode) {
+        if(bicycleService.removeBicycle(bicycleCode) > 0) {
+            return Result.ok().data("删除成功");
+        }else {
+            return Result.error().data("删除失败");
         }
     }
 }

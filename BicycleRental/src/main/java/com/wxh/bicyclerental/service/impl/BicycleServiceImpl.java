@@ -37,4 +37,9 @@ public class BicycleServiceImpl implements IBicycleService {
     public int update(Bicycle bicycle) {
         return bicycleMapper.update(bicycle);
     }
+
+    @Override
+    public int removeBicycle(Long bicycleCode) {
+        return bicycleMapper.removeBicycle(bicycleCode);
+    }
 }

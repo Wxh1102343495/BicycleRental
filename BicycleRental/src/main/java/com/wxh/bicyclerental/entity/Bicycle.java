@@ -22,6 +22,16 @@ public class Bicycle implements Serializable {
     //自行车状态（0/1/2）
     private Integer state;
 
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     public Long getBicycleCode() {
         return bicycleCode;
     }
