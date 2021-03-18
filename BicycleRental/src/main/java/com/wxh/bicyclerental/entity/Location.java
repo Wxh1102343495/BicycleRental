@@ -12,6 +12,16 @@ public class Location implements Serializable {
     private String area;
     //具体位置描述
     private String locationInfo;
+    //状态
+    private Integer state;
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
 
     public Integer getId() {
         return id;

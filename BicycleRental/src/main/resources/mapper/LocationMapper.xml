@@ -8,12 +8,13 @@
         <result column="city" property="city"/>
         <result column="area" property="area"/>
         <result column="location_info" property="locationInfo"/>
+        <result column="state" property="state"/>
     </resultMap>
     <select id="selectOne" parameterType="Integer" resultType="Location">
 		select * from location where id=#{0}
 	</select>
     <select id="select" resultMap="locationResultMap">
-		select * from location
+		select * from location where state = 1
 	</select>
     <insert id="insert" parameterType="Location">
 		insert into location(province,city,area,location_info) values(#{province},#{city},#{area},#{locationInfo})

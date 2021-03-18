@@ -39,6 +39,8 @@ public class LocationController {
     @PostMapping("/addLocation")
     @ApiOperation("新增地址信息")
     public Result addLocation(@RequestBody Location location) {
+        // 设置默认状态为1
+        location.setState(1);
         if(locationService.insert(location) > 0) {
             return Result.ok().data("添加成功");
         }else {
