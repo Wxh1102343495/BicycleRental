@@ -8,12 +8,36 @@
         <result column="bicycle_id" property="bicycle_id"/>
         <result column="describe" property="describe"/>
         <result column="state" property="state"/>
+        <association property="bicycle" javaType="Bicycle">
+            <result column="bicycle_code" property="bicycleCode"/>
+            <result column="bicycle_name" property="bicycleName"/>
+            <result column="photo" property="photo"/>
+        </association>
+        <association property="user" javaType="User">
+            <result column="username" property="username"/>
+            <result column="phone_number" property="phoneNumber"/>
+        </association>
+        <association property="location" javaType="Location">
+            <result column="province" property="province"/>
+            <result column="city" property="city"/>
+            <result column="area" property="area"/>
+            <result column="location_info" property="locationInfo"/>
+        </association>
     </resultMap>
     <select id="selectOne" parameterType="Integer" resultType="ErrorInfo">
 		select * from error_info where id=#{0}
 	</select>
     <select id="select" resultMap="error_infoResultMap">
-		select * from error_info
+		select a.id, a.describe, b.bicycle_code, b.bicycle_name, b.photo, c.username, c.phone_number, d.province, d.city, d.area, d.location_info
+		from error_info a
+		left join bicycle b
+		on a.bicycle_id = b.bicycle_code
+		left join user c
+		on a.user_id = c.id
+		left join location d
+		on b.location_id = d.id
+		where a.state = 1
+		and b.state = 1
 	</select>
     <insert id="insert" parameterType="ErrorInfo">
 		insert into error_info(user_id,bicycle_id,describe,state) values(#{user_id},#{bicycle_id},#{describe},#{state})
@@ -21,7 +45,7 @@
     <delete id="delete" parameterType="Integer">
 		delete from error_info where id=#{0}
 	</delete>
-    <update id="update" parameterType="ErrorInfo">
-		update error_info set user_id=#{user_id},bicycle_id=#{bicycle_id},describe=#{describe},state=#{state} where id=#{id}
+    <update id="editErrorInfoState" parameterType="Integer">
+		update error_info set state = 0 where id=#{0}
 	</update>
 </mapper>

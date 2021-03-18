@@ -23,14 +23,15 @@
 		select * from bicycle where bicycle_code=#{0}
 	</select>
     <select id="select" resultMap="bicycleResultMap">
-		select a.*,b.province,b.city,b.area,b.location_info from bicycle a left join location b on a.location_id = b.id where state = 1
+		select a.*,b.province,b.city,b.area,b.location_info
+		from bicycle a
+		left join location b
+		on a.location_id = b.id
+		where state = 1
 	</select>
     <insert id="insert" parameterType="Bicycle">
 		insert into bicycle(bicycle_code,location_id,bicycle_name,photo,describ,hour_rent,day_rent,month_rent,state) values(#{bicycleCode},#{locationId},#{bicycleName},#{photo},#{describ},#{hourRent},#{dayRent},#{monthRent},#{state})
 	</insert>
-    <delete id="delete" parameterType="Long">
-		delete from bicycle where bicycle_code=#{0}
-	</delete>
     <update id="update" parameterType="Bicycle">
 		update bicycle set location_id=#{locationId},bicycle_name=#{bicycleName},photo=#{photo},describ=#{describ},hour_rent=#{hourRent},day_rent=#{dayRent},month_rent=#{monthRent},state=#{state} where bicycle_code=#{bicycleCode}
 	</update>

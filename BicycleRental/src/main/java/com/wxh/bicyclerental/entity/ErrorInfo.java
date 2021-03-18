@@ -14,6 +14,36 @@ public class ErrorInfo implements Serializable {
     //状态（0已完成，1需要维修）
     private Integer state;
 
+    private Bicycle bicycle;
+
+    private User user;
+
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Bicycle getBicycle() {
+        return bicycle;
+    }
+
+    public void setBicycle(Bicycle bicycle) {
+        this.bicycle = bicycle;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -1,13 +1,10 @@
-package com.wxh.bicyclerental.mapper;
+package com.wxh.bicyclerental.service;
 
 import com.wxh.bicyclerental.entity.ErrorInfo;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-
-@Mapper
-public interface ErrorInfoMapper {
+public interface IErrorInfoService {
     public List<ErrorInfo> select();
     public ErrorInfo selectOne(Integer id);
     public int insert(ErrorInfo errorInfo);
