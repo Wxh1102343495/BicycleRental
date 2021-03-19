@@ -47,4 +47,20 @@ public class LocationController {
             return Result.error().data("添加失败");
         }
     }
+
+    /**
+     * 删除地址信息
+     */
+    @GetMapping("/removeLocation")
+    @ApiOperation("删除地址信息")
+    public Result removeLocation(@RequestParam Integer id) {
+        if(null == id || "".equals(id)) {
+            return Result.error().data("删除失败");
+        }
+        if (locationService.removeLocation(id) > 0) {
+            return Result.ok().data("删除成功");
+        } else {
+            return Result.error().data("删除失败");
+        }
+    }
 }

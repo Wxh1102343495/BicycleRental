@@ -38,4 +38,9 @@ public class LocationServiceImpl implements ILocationService {
     public int update(Location location) {
         return 0;
     }
+
+    @Override
+    public int removeLocation(Integer id) {
+        return locationMapper.removeLocation(id);
+    }
 }

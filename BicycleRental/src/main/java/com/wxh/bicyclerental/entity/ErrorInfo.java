@@ -9,6 +9,8 @@ public class ErrorInfo implements Serializable {
     private Integer userId;
     //自行车编码id
     private Integer bicycleId;
+    //所在停车点
+    private Integer locationId;
     //故障描述
     private String describe;
     //状态（0已完成，1需要维修）
@@ -19,6 +21,14 @@ public class ErrorInfo implements Serializable {
     private User user;
 
     private Location location;
+
+    public Integer getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(Integer locationId) {
+        this.locationId = locationId;
+    }
 
     public Location getLocation() {
         return location;
@@ -90,6 +100,7 @@ public class ErrorInfo implements Serializable {
                 "id=" + id +
                 ", userId=" + userId +
                 ", bicycleId=" + bicycleId +
+                ", locationId=" + locationId +
                 ", describe='" + describe + '\'' +
                 ", state=" + state +
                 '}';

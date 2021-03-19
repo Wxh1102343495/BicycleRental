@@ -10,4 +10,5 @@ public interface ILocationService {
     public int insert(Location location);
     public int delete(Integer id);
     public int update(Location location);
+    public int removeLocation(Integer id);
 }

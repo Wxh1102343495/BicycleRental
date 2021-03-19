@@ -5,8 +5,6 @@ import java.io.Serializable;
 public class Bicycle implements Serializable {
     //自行车编码
     private Long bicycleCode;
-    //所在停车点id
-    private Integer locationId;
     //自行车名字
     private String bicycleName;
     // 照片路径
@@ -22,15 +20,6 @@ public class Bicycle implements Serializable {
     //自行车状态（0/1/2）
     private Integer state;
 
-    private Location location;
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public Long getBicycleCode() {
         return bicycleCode;
@@ -38,14 +27,6 @@ public class Bicycle implements Serializable {
 
     public void setBicycleCode(Long bicycleCode) {
         this.bicycleCode = bicycleCode;
-    }
-
-    public Integer getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(Integer locationId) {
-        this.locationId = locationId;
     }
 
     public String getBicycleName() {
@@ -107,7 +88,6 @@ public class Bicycle implements Serializable {
     public String toString() {
         return "Bicycle{" +
                 "bicycleCode=" + bicycleCode +
-                ", locationId=" + locationId +
                 ", bicycleName='" + bicycleName + '\'' +
                 ", photo='" + photo + '\'' +
                 ", describ='" + describ + '\'' +

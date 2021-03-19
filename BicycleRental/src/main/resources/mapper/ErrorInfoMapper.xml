@@ -4,8 +4,9 @@
 <mapper namespace="com.wxh.bicyclerental.mapper.ErrorInfoMapper">
     <resultMap type="ErrorInfo" id="error_infoResultMap">
         <id column="id" property="id"/>
-        <result column="user_id" property="user_id"/>
-        <result column="bicycle_id" property="bicycle_id"/>
+        <result column="user_id" property="userId"/>
+        <result column="bicycle_id" property="bicycleId"/>
+        <result column="location_id" property="locationId"/>
         <result column="describe" property="describe"/>
         <result column="state" property="state"/>
         <association property="bicycle" javaType="Bicycle">
@@ -35,12 +36,12 @@
 		left join user c
 		on a.user_id = c.id
 		left join location d
-		on b.location_id = d.id
+		on a.location_id = d.id
 		where a.state = 1
 		and b.state = 1
 	</select>
     <insert id="insert" parameterType="ErrorInfo">
-		insert into error_info(user_id,bicycle_id,describe,state) values(#{user_id},#{bicycle_id},#{describe},#{state})
+		insert into error_info(user_id,bicycle_id,location_id,describe,state) values(#{userId},#{bicycleId},#{locationId},#{describe},#{state})
 	</insert>
     <delete id="delete" parameterType="Integer">
 		delete from error_info where id=#{0}

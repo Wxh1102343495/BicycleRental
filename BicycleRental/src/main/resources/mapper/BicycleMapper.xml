@@ -4,7 +4,6 @@
 <mapper namespace="com.wxh.bicyclerental.mapper.BicycleMapper">
     <resultMap type="Bicycle" id="bicycleResultMap">
         <id column="bicycle_code" property="bicycleCode"/>
-        <result column="location_id" property="locationId"/>
         <result column="bicycle_name" property="bicycleName"/>
         <result column="photo" property="photo"/>
         <result column="describ" property="describ"/>
@@ -12,28 +11,18 @@
         <result column="day_rent" property="dayRent"/>
         <result column="month_rent" property="monthRent"/>
         <result column="state" property="state"/>
-        <association property="location" javaType="Location">
-            <result column="province" property="province"/>
-            <result column="city" property="city"/>
-            <result column="area" property="area"/>
-            <result column="location_info" property="locationInfo"/>
-        </association>
     </resultMap>
     <select id="selectOne" parameterType="Long" resultType="Bicycle">
 		select * from bicycle where bicycle_code=#{0}
 	</select>
     <select id="select" resultMap="bicycleResultMap">
-		select a.*,b.province,b.city,b.area,b.location_info
-		from bicycle a
-		left join location b
-		on a.location_id = b.id
-		where state = 1
+		select * from bicycle where state = 1
 	</select>
     <insert id="insert" parameterType="Bicycle">
-		insert into bicycle(bicycle_code,location_id,bicycle_name,photo,describ,hour_rent,day_rent,month_rent,state) values(#{bicycleCode},#{locationId},#{bicycleName},#{photo},#{describ},#{hourRent},#{dayRent},#{monthRent},#{state})
+		insert into bicycle(bicycle_code,bicycle_name,photo,describ,hour_rent,day_rent,month_rent,state) values(#{bicycleCode},#{bicycleName},#{photo},#{describ},#{hourRent},#{dayRent},#{monthRent},#{state})
 	</insert>
     <update id="update" parameterType="Bicycle">
-		update bicycle set location_id=#{locationId},bicycle_name=#{bicycleName},photo=#{photo},describ=#{describ},hour_rent=#{hourRent},day_rent=#{dayRent},month_rent=#{monthRent},state=#{state} where bicycle_code=#{bicycleCode}
+		update bicycle set bicycle_name=#{bicycleName},photo=#{photo},describ=#{describ},hour_rent=#{hourRent},day_rent=#{dayRent},month_rent=#{monthRent},state=#{state} where bicycle_code=#{bicycleCode}
 	</update>
     <update id="removeBicycle" parameterType="Long">
 		update bicycle set state = 2 where bicycle_code=#{0}
