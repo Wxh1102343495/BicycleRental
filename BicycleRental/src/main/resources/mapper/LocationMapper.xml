@@ -23,7 +23,7 @@
 		delete from location where id=#{0}
 	</delete>
     <update id="update" parameterType="Location">
-		update location set province=#{province},city=#{city},area=#{area},location_info=#{locationInfo},state=#{state} where id=#{id}
+		update location set location_info=#{locationInfo} where id=#{id}
 	</update>
     <update id="removeLocation" parameterType="Integer">
 		update location set state = 2 where id=#{0}

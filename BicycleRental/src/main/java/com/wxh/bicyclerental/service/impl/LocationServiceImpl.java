@@ -36,7 +36,7 @@ public class LocationServiceImpl implements ILocationService {
 
     @Override
     public int update(Location location) {
-        return 0;
+        return locationMapper.update(location);
     }
 
     @Override

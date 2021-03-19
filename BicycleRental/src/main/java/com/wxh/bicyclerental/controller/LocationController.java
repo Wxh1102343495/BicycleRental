@@ -3,6 +3,7 @@ package com.wxh.bicyclerental.controller;
 import com.wxh.bicyclerental.entity.Location;
 import com.wxh.bicyclerental.service.ILocationService;
 import com.wxh.bicyclerental.utils.Result;
+import com.wxh.bicyclerental.utils.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,22 @@ public class LocationController {
             return Result.ok().data("删除成功");
         } else {
             return Result.error().data("删除失败");
+        }
+    }
+
+    /**
+     * 修改地址信息
+     */
+    @PostMapping("/updateLocation")
+    @ApiOperation("修改地址信息")
+    public Result updateLocation(@RequestBody Location location) {
+        if(StringUtils.isNull(location)) {
+            return Result.error().data("修改失败");
+        }
+        if (locationService.update(location) > 0) {
+            return Result.ok().data("修改成功");
+        } else {
+            return Result.error().data("修改失败");
         }
     }
 }
