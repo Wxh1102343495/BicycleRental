@@ -1,12 +1,10 @@
-package com.wxh.bicyclerental.mapper;
+package com.wxh.bicyclerental.service;
 
 import com.wxh.bicyclerental.entity.Coupon;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface CouponMapper {
+public interface ICouponService {
     public Coupon selectOne();
     public List<Coupon> select();
     public int insert(Coupon coupon);

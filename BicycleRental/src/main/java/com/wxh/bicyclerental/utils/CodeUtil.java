@@ -21,12 +21,12 @@ public class CodeUtil {
     }
 
     /**
-     * 随机生成17/18位数据id
+     * 随机生成7位数据id
      *
      * @return
      */
-    public static long UCode() {
-        long code = Long.parseLong(format1.format(Calendar.getInstance().getTime()) + random.nextInt(99999999)
+    public static Integer UCode() {
+        Integer code = Integer.parseInt(format1.format(Calendar.getInstance().getTime()) + random.nextInt(9)
         );
         return code;
     }

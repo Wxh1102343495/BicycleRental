@@ -13,6 +13,16 @@ public class Coupon implements Serializable {
     private Float discount;
     //价格
     private Float price;
+    //优惠券状态（0/1）
+    private Integer state;
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
 
     public Integer getCouponId() {
         return couponId;
