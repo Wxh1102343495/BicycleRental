@@ -12,4 +12,5 @@ public interface CouponMapper {
     public int insert(Coupon coupon);
     public int delete(Integer id);
     public int update(Coupon coupon);
+    public List<Coupon> selectByState(Integer state);
 }

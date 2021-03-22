@@ -38,4 +38,9 @@ public class CouponServiceImpl implements ICouponService {
     public int update(Coupon coupon) {
         return couponMapper.update(coupon);
     }
+
+    @Override
+    public List<Coupon> selectByState(Integer state) {
+        return couponMapper.selectByState(state);
+    }
 }

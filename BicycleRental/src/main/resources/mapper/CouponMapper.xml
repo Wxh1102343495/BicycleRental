@@ -16,6 +16,9 @@
     <select id="select" resultMap="couponResultMap">
 		select * from coupon where state = 1
 	</select>
+    <select id="selectByState" parameterType="Integer" resultMap="couponResultMap">
+		select * from coupon where state = #{0}
+	</select>
     <insert id="insert" parameterType="Coupon">
 		insert into coupon(coupon_id,coupon_name,coupon_describe,discount,price,state) values(#{couponId},#{couponName},#{couponDescribe},#{discount},#{price},#{state})
 	</insert>
@@ -23,6 +26,6 @@
 		delete from coupon where coupon_id=#{0}
 	</delete>
     <update id="update" parameterType="Coupon">
-		update coupon set coupon_name=#{coupon_name},discount=#{discount},price=#{price},state=#{state} where coupon_id=#{coupon_id}
+		update coupon set state=#{state} where coupon_id=#{couponId}
 	</update>
 </mapper>
