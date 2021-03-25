@@ -6,6 +6,7 @@ import com.wxh.bicyclerental.entity.Bicycle;
 import com.wxh.bicyclerental.service.IBicycleService;
 import com.wxh.bicyclerental.utils.CodeUtil;
 import com.wxh.bicyclerental.utils.Result;
+import com.wxh.bicyclerental.utils.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,16 @@ public class BicycleController {
 
         }
     }
+
+    /**
+     * 查询所有自行车信息
+     */
+    @GetMapping("/findAll")
+    @ApiOperation("查询所有自行车信息")
+    public Result findAll() {
+        return Result.ok().data(bicycleService.select());
+    }
+
     /**
      * 分页查询自行车信息
      */
@@ -54,6 +65,21 @@ public class BicycleController {
         map.put("data", bicycleList.getList());
         return Result.ok().data(map);
     }
+
+    /**
+     * 根据自行车编码查询自行车信息
+     */
+    @PostMapping("/findByCode")
+    @ApiOperation("根据自行车编码查询自行车信息")
+    public Result findByCode(@RequestBody Bicycle bicycle) {
+        if(StringUtils.isNull(bicycle)) {
+            return Result.error().data("失败");
+        }else {
+            Long bicycleCode = bicycle.getBicycleCode();
+            return Result.ok().data(bicycleService.selectOne(bicycleCode));
+        }
+    }
+
     /**
      * 将自行车状态设为2（报废）删除操作
      */
