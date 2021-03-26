@@ -3,10 +3,20 @@ package com.wxh.bicyclerental.entity;
 import java.io.Serializable;
 
 public class UserCoupon implements Serializable {
+
+    /**
+     * 主键id
+     */
     private Integer id;
-    //用户id
+
+    /**
+     * 外键用户id
+     */
     private Integer userId;
-    //优惠券id
+
+    /**
+     * 外键优惠券id
+     */
     private Integer couponId;
 
     public Integer getId() {

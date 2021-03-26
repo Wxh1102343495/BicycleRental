@@ -26,10 +26,10 @@ public class LocationController {
     private ILocationService locationService;
 
     /**
-     * 查询所有地址信息
+     * 分页查询所有地址信息
      */
     @GetMapping("/queryLocation")
-    @ApiOperation("查询所有地址信息")
+    @ApiOperation("分页查询所有地址信息")
     public Result queryLocation(@RequestParam int pageNo, @RequestParam int pageSize) {
         Map map = new HashMap<>();
         //使用PageHelper分页插件
@@ -38,6 +38,15 @@ public class LocationController {
         map.put("total", locationList.getTotal());
         map.put("data", locationList.getList());
         return Result.ok().data(map);
+    }
+
+    /**
+     * 查询所有地址信息
+     */
+    @GetMapping("/findAllLocation")
+    @ApiOperation("查询所有地址信息")
+    public Result findAllLocation() {
+        return Result.ok().data(locationService.select());
     }
 
     /**

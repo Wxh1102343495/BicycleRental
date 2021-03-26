@@ -3,21 +3,44 @@ package com.wxh.bicyclerental.entity;
 import java.io.Serializable;
 
 public class Bicycle implements Serializable {
-    //自行车编码
+    /**
+     * 主键自行车编码
+     */
     private Long bicycleCode;
-    //自行车名字
+
+    /**
+     * 自行车名字
+     */
     private String bicycleName;
-    // 照片路径
+
+    /**
+     * 照片路径
+     */
     private String photo;
-    //自行车描述
+
+    /**
+     * 自行车描述
+     */
     private String describ;
-    //时租费用
+
+    /**
+     * 时租费用
+     */
     private Float hourRent;
-    //日租费用
+
+    /**
+     * 日租费用
+     */
     private Float dayRent;
-    //月租费用
+
+    /**
+     * 月租费用
+     */
     private Float monthRent;
-    //自行车状态（0/1/2）
+
+    /**
+     * 自行车状态（1：正常，2：报废）
+     */
     private Integer state;
 
 

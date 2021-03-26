@@ -3,23 +3,49 @@ package com.wxh.bicyclerental.entity;
 import java.io.Serializable;
 
 public class ErrorInfo implements Serializable {
-
+    /**
+     * 主键id
+     */
     private Integer id;
-    //用户id
+
+    /**
+     * 用户id
+     */
     private Integer userId;
-    //自行车编码id
+
+    /**
+     * 自行车编码id
+     */
     private Integer bicycleId;
-    //所在停车点
+
+    /**
+     * 所在停车点
+     */
     private Integer locationId;
-    //故障描述
+
+    /**
+     * 故障描述
+     */
     private String describe;
-    //状态（0已完成，1需要维修）
+
+    /**
+     * 状态（0：已完成，1：需要维修）
+     */
     private Integer state;
 
+    /**
+     * 关联自行车
+     */
     private Bicycle bicycle;
 
+    /**
+     * 关联用户
+     */
     private User user;
 
+    /**
+     * 关联地址
+     */
     private Location location;
 
     public Integer getLocationId() {

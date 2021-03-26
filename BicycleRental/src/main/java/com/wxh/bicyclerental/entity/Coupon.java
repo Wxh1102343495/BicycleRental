@@ -3,17 +3,34 @@ package com.wxh.bicyclerental.entity;
 import java.io.Serializable;
 
 public class Coupon implements Serializable {
-    //优惠券id
+    /**
+     * 主键优惠券id
+     */
     private Integer couponId;
-    //优惠券名字
+
+    /**
+     * 优惠券名字
+     */
     private String couponName;
-    //优惠券描述
+
+    /**
+     * 优惠券描述
+     */
     private String couponDescribe;
-    //折扣
+
+    /**
+     * 折扣
+     */
     private Float discount;
-    //价格
+
+    /**
+     * 价格
+     */
     private Float price;
-    //优惠券状态（0/1）
+
+    /**
+     * 优惠券状态（0：已下架，1：在售）
+     */
     private Integer state;
 
     public Integer getState() {

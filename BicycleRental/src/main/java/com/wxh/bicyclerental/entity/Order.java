@@ -4,21 +4,54 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Order implements Serializable {
-    //订单编号
+    /**
+     * 订单编号
+     */
     private Integer orderId;
-    //用户id
+
+    /**
+     * 用户id
+     */
     private Integer userId;
-    //自行车编码
+
+    /**
+     * 自行车编码
+     */
     private Integer bicycleId;
-    //订单开始时间
+
+    /**
+     * 取车地点id
+     */
+    private Integer locationId;
+
+    /**
+     * 租赁方式（h时租，d日租，m月租）
+     */
+    private String rentMode;
+
+    /**
+     * 订单开始时间
+     */
     private Date startDate;
-    //订单结束时间
+
+    /**
+     * 订单结束时间
+     */
     private Date endDate;
-    //租金
+
+    /**
+     * 总租金
+     */
     private Float rant;
-    //订单状态（0已完成，1正在进行）
+
+    /**
+     * 订单状态（0：已完成，1：正在进行）
+     */
     private Integer state;
-    //订单评价
+
+    /**
+     * 订单评价
+     */
     private String evaluation;
 
     public Integer getOrderId() {
@@ -84,6 +117,21 @@ public class Order implements Serializable {
     public void setEvaluation(String evaluation) {
         this.evaluation = evaluation;
     }
+    public Integer getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(Integer locationId) {
+        this.locationId = locationId;
+    }
+
+    public String getRentMode() {
+        return rentMode;
+    }
+
+    public void setRentMode(String rentMode) {
+        this.rentMode = rentMode;
+    }
 
     @Override
     public String toString() {
@@ -91,7 +139,9 @@ public class Order implements Serializable {
                 "orderId=" + orderId +
                 ", userId=" + userId +
                 ", bicycleId=" + bicycleId +
+                ", locationId=" + locationId +
                 ", startDate=" + startDate +
+                ", rentMode='" + rentMode + '\'' +
                 ", endDate=" + endDate +
                 ", rant=" + rant +
                 ", state=" + state +

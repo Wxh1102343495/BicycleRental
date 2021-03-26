@@ -3,16 +3,34 @@ package com.wxh.bicyclerental.entity;
 import java.io.Serializable;
 
 public class Location implements Serializable {
+    /**
+     * 主键id
+     */
     private Integer id;
-    //省份
+
+    /**
+     * 省份
+     */
     private String province;
-    //市
+
+    /**
+     * 市
+     */
     private String city;
-    //区
+
+    /**
+     * 区
+     */
     private String area;
-    //具体位置描述
+
+    /**
+     * 具体位置描述
+     */
     private String locationInfo;
-    //状态
+
+    /**
+     * 状态（1：正常，2：废弃）
+     */
     private Integer state;
 
     public Integer getState() {
