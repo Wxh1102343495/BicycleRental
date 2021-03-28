@@ -2,5 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wxh.bicyclerental.mapper.OrderMapper">
-
+    <resultMap type="Order" id="orderResultMap">
+        <id column="order_id" property="orderId"/>
+        <result column="user_id" property="userId"/>
+        <result column="bicycle_id" property="bicycleId"/>
+        <result column="location_id" property="locationId"/>
+        <result column="rent_mode" property="rentMode"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="rent" property="rent"/>
+        <result column="state" property="state"/>
+        <result column="remark" property="remark"/>
+        <result column="evaluation" property="evaluation"/>
+        <association property="bicycle" javaType="Bicycle">
+            <result column="bicycle_code" property="bicycleCode"/>
+            <result column="bicycle_name" property="bicycleName"/>
+            <result column="photo" property="photo"/>
+        </association>
+        <association property="user" javaType="User">
+            <result column="name" property="name"/>
+            <result column="phone_number" property="phoneNumber"/>
+        </association>
+        <association property="location" javaType="Location">
+            <result column="province" property="province"/>
+            <result column="city" property="city"/>
+            <result column="area" property="area"/>
+            <result column="location_info" property="locationInfo"/>
+        </association>
+    </resultMap>
+    <select id="selectOne" parameterType="Integer" resultType="Order">
+		select * from order where order_id=#{0}
+	</select>
+    <select id="selectByState" parameterType="Integer" resultMap="orderResultMap">
+		select a.order_id, a.rent_mode, a.start_time, a.end_time, a.rent, a.remark, a.evaluation, b.bicycle_code, b.bicycle_name, b.photo, c.name, c.phone_number, d.province, d.city, d.area, d.location_info
+		from order a
+		left join bicycle b
+		on a.bicycle_id = b.bicycle_code
+		left join user c
+		on a.user_id = c.id
+		left join location d
+		on a.location_id = d.id
+		where a.state = #{0}
+	</select>
+    <insert id="insert" parameterType="Order">
+		insert into `order`(order_id,user_id,bicycle_id,location_id,rent_mode,start_time,state,remark)
+		values(#{orderId},#{userId},#{bicycleId},#{locationId},#{rentMode},#{startTime},#{state},#{remark})
+	</insert>
+    <update id="updateOrderEnd" parameterType="Integer">
+		update order set end_time=#{endTime},rent=#{rent},state=0,evaluation=#{evaluation}
+		where order_id=#{orderId}
+	</update>
 </mapper>

@@ -1,12 +1,10 @@
-package com.wxh.bicyclerental.mapper;
+package com.wxh.bicyclerental.service;
 
 import com.wxh.bicyclerental.entity.Order;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface OrderMapper {
+public interface IOrderService {
     public Order selectOne(Integer orderId);
     public List<Order> selectByState(Integer state);
     public int insert(Order order);

@@ -1,7 +1,10 @@
 package com.wxh.bicyclerental.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class Order implements Serializable {
     /**
@@ -17,7 +20,7 @@ public class Order implements Serializable {
     /**
      * 自行车编码
      */
-    private Integer bicycleId;
+    private Long bicycleId;
 
     /**
      * 取车地点id
@@ -32,12 +35,16 @@ public class Order implements Serializable {
     /**
      * 订单开始时间
      */
-    private Date startDate;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date startTime;
 
     /**
      * 订单结束时间
      */
-    private Date endDate;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date endTime;
 
     /**
      * 总租金
@@ -50,9 +57,62 @@ public class Order implements Serializable {
     private Integer state;
 
     /**
+     * 备注
+     */
+    private String remark;
+
+    /**
      * 订单评价
      */
     private String evaluation;
+
+    /**
+     * 关联用户
+     */
+    private User user;
+
+    /**
+     * 关联自行车
+     */
+    private Bicycle bicycle;
+
+    /**
+     * 关联地址
+     */
+    private Location location;
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Bicycle getBicycle() {
+        return bicycle;
+    }
+
+    public void setBicycle(Bicycle bicycle) {
+        this.bicycle = bicycle;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     public Integer getOrderId() {
         return orderId;
@@ -70,28 +130,28 @@ public class Order implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getBicycleId() {
+    public Long getBicycleId() {
         return bicycleId;
     }
 
-    public void setBicycleId(Integer bicycleId) {
+    public void setBicycleId(Long bicycleId) {
         this.bicycleId = bicycleId;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public Date getEndTime() {
+        return endTime;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public Float getRant() {
@@ -140,9 +200,9 @@ public class Order implements Serializable {
                 ", userId=" + userId +
                 ", bicycleId=" + bicycleId +
                 ", locationId=" + locationId +
-                ", startDate=" + startDate +
+                ", startDate=" + startTime +
                 ", rentMode='" + rentMode + '\'' +
-                ", endDate=" + endDate +
+                ", endDate=" + endTime +
                 ", rant=" + rant +
                 ", state=" + state +
                 ", evaluation='" + evaluation + '\'' +
