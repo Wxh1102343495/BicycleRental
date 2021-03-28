@@ -32,4 +32,14 @@ public class OrderServiceImpl implements IOrderService {
     public int updateOrderEnd(Integer orderId) {
         return orderMapper.updateOrderEnd(orderId);
     }
+
+    @Override
+    public List<Order> selectByUserAndState(Order order) {
+        return orderMapper.selectByUserAndState(order);
+    }
+
+    @Override
+    public int delete(Integer orderId) {
+        return orderMapper.delete(orderId);
+    }
 }

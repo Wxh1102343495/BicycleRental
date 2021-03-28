@@ -17,10 +17,14 @@
         <association property="bicycle" javaType="Bicycle">
             <result column="bicycle_code" property="bicycleCode"/>
             <result column="bicycle_name" property="bicycleName"/>
+            <result column="hour_rent" property="hourRent"/>
+            <result column="day_rent" property="dayRent"/>
+            <result column="month_rent" property="monthRent"/>
             <result column="photo" property="photo"/>
         </association>
         <association property="user" javaType="User">
             <result column="name" property="name"/>
+            <result column="username" property="username"/>
             <result column="phone_number" property="phoneNumber"/>
         </association>
         <association property="location" javaType="Location">
@@ -31,11 +35,11 @@
         </association>
     </resultMap>
     <select id="selectOne" parameterType="Integer" resultType="Order">
-		select * from order where order_id=#{0}
+		select * from `order` where order_id=#{0}
 	</select>
     <select id="selectByState" parameterType="Integer" resultMap="orderResultMap">
-		select a.order_id, a.rent_mode, a.start_time, a.end_time, a.rent, a.remark, a.evaluation, b.bicycle_code, b.bicycle_name, b.photo, c.name, c.phone_number, d.province, d.city, d.area, d.location_info
-		from order a
+		select a.order_id, a.rent_mode, a.start_time, a.end_time, a.rent, a.remark, a.evaluation, b.bicycle_code, b.bicycle_name, b.photo,c.username, b.hour_rent, b.day_rent, b.month_rent, c.name, c.phone_number, d.province, d.city, d.area, d.location_info
+		from `order` a
 		left join bicycle b
 		on a.bicycle_id = b.bicycle_code
 		left join user c
@@ -44,12 +48,27 @@
 		on a.location_id = d.id
 		where a.state = #{0}
 	</select>
+    <select id="selectByUserAndState" parameterType="Order" resultMap="orderResultMap">
+		select a.order_id, a.rent_mode, a.start_time, a.end_time, a.rent, a.remark, a.evaluation, b.bicycle_code, b.bicycle_name, b.photo, b.hour_rent, b.day_rent, b.month_rent, c.username, c.name, c.phone_number, d.province, d.city, d.area, d.location_info
+		from `order` a
+		left join bicycle b
+		on a.bicycle_id = b.bicycle_code
+		left join user c
+		on a.user_id = c.id
+		left join location d
+		on a.location_id = d.id
+		where a.state = #{state}
+		and a.user_id = #{userId}
+	</select>
     <insert id="insert" parameterType="Order">
 		insert into `order`(order_id,user_id,bicycle_id,location_id,rent_mode,start_time,state,remark)
 		values(#{orderId},#{userId},#{bicycleId},#{locationId},#{rentMode},#{startTime},#{state},#{remark})
 	</insert>
     <update id="updateOrderEnd" parameterType="Integer">
-		update order set end_time=#{endTime},rent=#{rent},state=0,evaluation=#{evaluation}
+		update `order` set end_time=#{endTime},rent=#{rent},state=0,evaluation=#{evaluation}
 		where order_id=#{orderId}
 	</update>
+    <delete id="delete" parameterType="Integer">
+		delete from `order` where order_id=#{0}
+	</delete>
 </mapper>

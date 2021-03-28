@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class CodeUtil {
     private static SimpleDateFormat format = new SimpleDateFormat("yyMMddHHMMss");
-    private static SimpleDateFormat format1 = new SimpleDateFormat("yyMMdd");
+    private static SimpleDateFormat format1 = new SimpleDateFormat("HHMMss");
     private static Random random = new Random();
 
     /**
