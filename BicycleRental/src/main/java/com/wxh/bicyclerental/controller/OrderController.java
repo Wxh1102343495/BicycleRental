@@ -105,6 +105,8 @@ public class OrderController {
         rquestOrder.setOrderId(order.getOrderId());
         rquestOrder.setEndTime(thisDate);
         rquestOrder.setEvaluation(order.getEvaluation());
+        //先将数据插入表中设置订单状态为未支付
+        rquestOrder.setState(2);
         //判断租赁方式获取租赁价格
         if("时租".equals(order.getRentMode())) {
             //获取租赁价格

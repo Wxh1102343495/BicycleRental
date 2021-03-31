@@ -52,7 +52,7 @@ public class Order implements Serializable {
     private Float rent;
 
     /**
-     * 订单状态（0：已完成，1：正在进行）
+     * 订单状态（0：已完成，1：正在进行，2：未支付）
      */
     private Integer state;
 
