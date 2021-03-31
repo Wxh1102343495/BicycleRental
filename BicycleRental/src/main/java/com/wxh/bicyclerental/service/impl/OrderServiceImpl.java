@@ -29,8 +29,8 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public int updateOrderEnd(Integer orderId) {
-        return orderMapper.updateOrderEnd(orderId);
+    public int updateOrderEnd(Order order) {
+        return orderMapper.updateOrderEnd(order);
     }
 
     @Override

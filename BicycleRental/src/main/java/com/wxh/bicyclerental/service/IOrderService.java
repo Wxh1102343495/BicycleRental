@@ -8,7 +8,7 @@ public interface IOrderService {
     public Order selectOne(Integer orderId);
     public List<Order> selectByState(Integer state);
     public int insert(Order order);
-    public int updateOrderEnd(Integer orderId);
+    public int updateOrderEnd(Order order);
     public List<Order> selectByUserAndState(Order order);
     public int delete(Integer orderId);
 }

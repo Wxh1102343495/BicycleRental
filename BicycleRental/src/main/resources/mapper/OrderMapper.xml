@@ -64,7 +64,7 @@
 		insert into `order`(order_id,user_id,bicycle_id,location_id,rent_mode,start_time,state,remark)
 		values(#{orderId},#{userId},#{bicycleId},#{locationId},#{rentMode},#{startTime},#{state},#{remark})
 	</insert>
-    <update id="updateOrderEnd" parameterType="Integer">
+    <update id="updateOrderEnd" parameterType="Order">
 		update `order` set end_time=#{endTime},rent=#{rent},state=0,evaluation=#{evaluation}
 		where order_id=#{orderId}
 	</update>

@@ -49,7 +49,7 @@ public class Order implements Serializable {
     /**
      * 总租金
      */
-    private Float rant;
+    private Float rent;
 
     /**
      * 订单状态（0：已完成，1：正在进行）
@@ -154,12 +154,12 @@ public class Order implements Serializable {
         this.endTime = endTime;
     }
 
-    public Float getRant() {
-        return rant;
+    public Float getRent() {
+        return rent;
     }
 
-    public void setRant(Float rant) {
-        this.rant = rant;
+    public void setRent(Float rent) {
+        this.rent = rent;
     }
 
     public Integer getState() {
@@ -203,7 +203,7 @@ public class Order implements Serializable {
                 ", startDate=" + startTime +
                 ", rentMode='" + rentMode + '\'' +
                 ", endDate=" + endTime +
-                ", rant=" + rant +
+                ", rent=" + rent +
                 ", state=" + state +
                 ", evaluation='" + evaluation + '\'' +
                 '}';
