@@ -25,7 +25,7 @@ public class PayController {
      */
     //1、接收页面传来的数据：订单号、金额、名称、商品描述，要求表单中的name值=参数名
     @RequestMapping("/aliPay")
-    public void aliPay(HttpServletRequest request, HttpServletResponse response)
+    public String aliPay(HttpServletRequest request, HttpServletResponse response)
             throws AlipayApiException,IOException{
         String Bout_trade_no = request.getParameter("Bout_trade_no");
         String Bsubject = request.getParameter("Bsubject");
@@ -45,7 +45,8 @@ public class PayController {
         //5、通过客户端发送请求
         String result = alipayClient.pageExecute(alipayTradePagePayRequest).getBody();
         //6、响应结果返回给前端
-        response.setContentType("text/html;charset=utf-8");
-        response.getWriter().println(result);
+//        response.setContentType("text/html;charset=utf-8");
+//        response.getWriter().println(result);
+        return result;
     }
 }
