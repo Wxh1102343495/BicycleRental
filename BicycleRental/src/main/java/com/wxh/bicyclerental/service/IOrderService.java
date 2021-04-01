@@ -5,7 +5,7 @@ import com.wxh.bicyclerental.entity.Order;
 import java.util.List;
 
 public interface IOrderService {
-    public Order selectOne(Integer orderId);
+    public Order selectOne(Integer userId);
     public List<Order> selectByState(Integer state);
     public int insert(Order order);
     public int updateOrderEnd(Order order);

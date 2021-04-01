@@ -14,8 +14,8 @@ public class OrderServiceImpl implements IOrderService {
     private OrderMapper orderMapper;
 
     @Override
-    public Order selectOne(Integer orderId) {
-        return orderMapper.selectOne(orderId);
+    public Order selectOne(Integer userId) {
+        return orderMapper.selectOne(userId);
     }
 
     @Override

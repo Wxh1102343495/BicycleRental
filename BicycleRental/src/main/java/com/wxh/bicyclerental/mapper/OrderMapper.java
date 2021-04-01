@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface OrderMapper {
-    public Order selectOne(Integer orderId);
+    public Order selectOne(Integer userId);
     public List<Order> selectByState(Integer state);
     public int insert(Order order);
     public int updateOrderEnd(Order order);

@@ -8,6 +8,7 @@ import com.wxh.bicyclerental.service.IOrderService;
 import com.wxh.bicyclerental.service.IUserService;
 import com.wxh.bicyclerental.utils.CodeUtil;
 import com.wxh.bicyclerental.utils.Result;
+import com.wxh.bicyclerental.utils.StringUtils;
 import com.wxh.bicyclerental.utils.TimeUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -82,6 +83,23 @@ public class OrderController {
             return Result.ok().data("成功");
         } else {
             return Result.error().data("失败");
+        }
+    }
+
+    /**
+     * 查询指定用户需要支付的订单
+     */
+    @GetMapping("findOrderNeedPay")
+    @ApiOperation("查询指定用户需要支付的订单")
+    public Result findOrderNeedPay(@RequestParam String username) {
+        //根据用户名查用户id
+        User user = userService.selectByUserName(username);
+        Integer uid = user.getId();
+        Order order = orderService.selectOne(uid);
+        if(StringUtils.isNotNull(order)) {
+            return Result.ok().data(order);
+        }else {
+            return Result.ok().data("");
         }
     }
 

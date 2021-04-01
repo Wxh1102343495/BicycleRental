@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class PayBeanUtil {
     @Bean
     public AlipayClient alipayClient() {
-        return new DefaultAlipayClient(PayUtil.GATEWAY_URL,PayUtil.APP_ID,PayUtil.APP_PRIVATE_KEY,PayUtil.FORMAT,PayUtil.CHARSET,PayUtil.ALIPAY_PUBLIC_KEY,PayUtil.SIGN_TYPE);
+        return new DefaultAlipayClient(PayUtil.GATEWAY_URL,PayUtil.APP_ID,PayUtil.merchant_private_key,PayUtil.FORMAT,PayUtil.CHARSET,PayUtil.ALIPAY_PUBLIC_KEY,PayUtil.SIGN_TYPE);
     }
     /**
      * 支付过程中对应的接口对象,支付信息配置

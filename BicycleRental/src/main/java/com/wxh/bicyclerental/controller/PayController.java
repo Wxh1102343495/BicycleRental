@@ -7,6 +7,7 @@ import com.wxh.bicyclerental.utils.PayUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -24,8 +25,12 @@ public class PayController {
      */
     //1、接收页面传来的数据：订单号、金额、名称、商品描述，要求表单中的name值=参数名
     @RequestMapping("/aliPay")
-    public void aliPay(String Bout_trade_no, String Bsubject, String Btotal_amount, String Bbody, HttpServletResponse response)
+    public void aliPay(HttpServletRequest request, HttpServletResponse response)
             throws AlipayApiException,IOException{
+        String Bout_trade_no = request.getParameter("Bout_trade_no");
+        String Bsubject = request.getParameter("Bsubject");
+        String Btotal_amount = request.getParameter("Btotal_amount");
+        String Bbody = request.getParameter("Bbody");
         //2、获取支付的客户端,就是AlipayClient和配置支付信息的对象AlipayTradePagePayRequest
         //3、设置响应地址，就是支付宝返回给商户的响应地址来源于哦配置中的两个地址
         alipayTradePagePayRequest.setNotifyUrl(PayUtil.NOTIFY_URL);
