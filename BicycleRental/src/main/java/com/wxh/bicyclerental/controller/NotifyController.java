@@ -35,7 +35,7 @@ public class NotifyController {
 //            valueStr = new String(valueStr.getBytes("ISO-8859-1"),"utf-8");
             params.put(name,valueStr);
         }
-        boolean signVerified = AlipaySignature.rsaCheckV1(params, PayUtil.ALIPAY_PUBLIC_KEY,PayUtil.CHARSET,PayUtil.SIGN_TYPE);
+        boolean signVerified = AlipaySignature.rsaCheckV1(params, PayUtil.ALIPAY_PUBLIC_KEY,PayUtil.charset,PayUtil.SIGN_TYPE);
         //编写自己的程序
         /*
         * 实际验证过程建议商户务必添加以下校验
