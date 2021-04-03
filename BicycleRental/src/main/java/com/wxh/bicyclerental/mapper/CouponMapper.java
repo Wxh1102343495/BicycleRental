@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface CouponMapper {
-    public Coupon selectOne();
+    public Coupon selectOne(Integer couponId);
     public List<Coupon> select();
     public int insert(Coupon coupon);
     public int delete(Integer id);

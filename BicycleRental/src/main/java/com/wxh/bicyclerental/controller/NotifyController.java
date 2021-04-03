@@ -4,21 +4,22 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.wxh.bicyclerental.service.IOrderService;
 import com.wxh.bicyclerental.utils.PayUtil;
-import com.wxh.bicyclerental.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+
+/**
+ * 支付宝支付异步通知
+ */
 @Controller
 public class NotifyController {
 
@@ -60,7 +61,7 @@ public class NotifyController {
             //交易状态
             String trade_status = request.getParameter("trade_status");
             if(orderService.updateOrderEnd(out_trade_no)>0) {
-                String url_to = "http://localhost:9521/#/dashboard";
+                String url_to = "http://localhost:9521/#/paySuccess/paySuccess";
                 return new ModelAndView(new RedirectView(url_to));
             }else {
                 return null;
@@ -68,6 +69,5 @@ public class NotifyController {
         }else {//验证失败
             return null;
         }
-
     }
 }

@@ -2,7 +2,6 @@ package com.wxh.bicyclerental.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wxh.bicyclerental.entity.Coupon;
 import com.wxh.bicyclerental.entity.Location;
 import com.wxh.bicyclerental.service.ILocationService;
 import com.wxh.bicyclerental.utils.Result;
@@ -11,11 +10,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+/**
+ * 地址管理
+ */
 @Api
 @RestController
 @RequestMapping("/location")

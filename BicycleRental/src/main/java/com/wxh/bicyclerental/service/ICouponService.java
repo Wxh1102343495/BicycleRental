@@ -5,7 +5,7 @@ import com.wxh.bicyclerental.entity.Coupon;
 import java.util.List;
 
 public interface ICouponService {
-    public Coupon selectOne();
+    public Coupon selectOne(Integer couponId);
     public List<Coupon> select();
     public int insert(Coupon coupon);
     public int delete(Integer id);

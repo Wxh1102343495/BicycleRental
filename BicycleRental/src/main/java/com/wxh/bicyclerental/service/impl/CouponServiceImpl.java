@@ -15,8 +15,8 @@ public class CouponServiceImpl implements ICouponService {
     private CouponMapper couponMapper;
 
     @Override
-    public Coupon selectOne() {
-        return couponMapper.selectOne();
+    public Coupon selectOne(Integer couponId) {
+        return couponMapper.selectOne(couponId);
     }
 
     @Override

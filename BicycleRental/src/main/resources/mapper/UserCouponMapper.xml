@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxh.bicyclerental.mapper.UserCouponMapper">
+    <resultMap type="UserCoupon" id="userCouponResult">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="coupon_id" property="couponId"/>
+        <result column="state" property="state"/>
+        <association property="user" javaType="User">
+            <result column="name" property="name"/>
+            <result column="username" property="username"/>
+            <result column="phone_number" property="phoneNumber"/>
+            <result column="id_number" property="idNumber"/>
+        </association>
+        <association property="coupon" javaType="Coupon">
+            <result column="coupon_name" property="couponName"/>
+            <result column="coupon_describe" property="couponDescribe"/>
+            <result column="discount" property="discount"/>
+            <result column="price" property="price"/>
+        </association>
+    </resultMap>
+    <select id="selectCouponByUserName" parameterType="String" resultMap="userCouponResult">
+		select a.*,b.name,b.username,b.phone_number,b.id_number,c.coupon_name,c.coupon_describe,c.discount,c.price
+		from user_coupon a
+		left join user b
+		on a.user_id = b.id
+		left join coupon c
+		on a.coupon_id = c.coupon_id
+		where b.username=#{0}
+		and c.state = 1
+		and a.state = 1
+	</select>
+    <select id="selectByUidAndCid" parameterType="UserCoupon" resultType="Integer">
+		select id from user_coupon where user_id = #{userId} and coupon_id = #{couponId}
+	</select>
+    <insert id="insert" parameterType="UserCoupon">
+		insert into user_coupon(user_id,coupon_id,state) values(#{userId},#{couponId},#{state})
+	</insert>
+    <update id="delete" parameterType="Integer">
+		update user_coupon set state = 0
+		where id=#{0}
+	</update>
+</mapper>

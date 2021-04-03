@@ -7,6 +7,7 @@
         <result column="user_id" property="userId"/>
         <result column="bicycle_id" property="bicycleId"/>
         <result column="location_id" property="locationId"/>
+        <result column="coupon_id" property="couponId"/>
         <result column="rent_mode" property="rentMode"/>
         <result column="start_time" property="startTime"/>
         <result column="end_time" property="endTime"/>
@@ -14,6 +15,7 @@
         <result column="state" property="state"/>
         <result column="remark" property="remark"/>
         <result column="evaluation" property="evaluation"/>
+		<result column="is_more_fixed" property="isMoreFixed"/>
         <association property="bicycle" javaType="Bicycle">
             <result column="bicycle_code" property="bicycleCode"/>
             <result column="bicycle_name" property="bicycleName"/>
@@ -24,6 +26,7 @@
             <result column="photo" property="photo"/>
         </association>
         <association property="user" javaType="User">
+            <result column="id" property="id"/>
             <result column="name" property="name"/>
             <result column="username" property="username"/>
             <result column="phone_number" property="phoneNumber"/>
@@ -34,17 +37,30 @@
             <result column="area" property="area"/>
             <result column="location_info" property="locationInfo"/>
         </association>
+        <association property="coupon" javaType="Coupon">
+            <result column="coupon_id" property="couponId"/>
+            <result column="coupon_name" property="couponName"/>
+            <result column="discount" property="discount"/>
+        </association>
     </resultMap>
     <select id="selectOne" parameterType="Integer" resultMap="orderResultMap">
-		select a.order_id,a.rent_mode,a.start_time,a.end_time,a.rent,b.bicycle_name,b.describ
+		select a.order_id,a.rent_mode,a.start_time,a.end_time,a.rent,a.is_more_fixed,
+		b.bicycle_name,b.describ,b.hour_rent, b.day_rent, b.month_rent,
+		c.coupon_id, c.coupon_name,c.discount
 		from `order` a
 		left join bicycle b
 		on a.bicycle_id = b.bicycle_code
+		left join coupon c
+		on a.coupon_id = c.coupon_id
 		where a.user_id=#{0}
 		and a.state = 2
 	</select>
     <select id="selectByState" parameterType="Integer" resultMap="orderResultMap">
-		select a.order_id, a.rent_mode, a.start_time, a.end_time, a.rent, a.remark, a.evaluation, b.bicycle_code, b.bicycle_name, b.photo,c.username, b.hour_rent, b.day_rent, b.month_rent, c.name, c.phone_number, d.province, d.city, d.area, d.location_info
+		select a.order_id, a.rent_mode, a.start_time, a.end_time, a.rent, a.remark, a.evaluation,a.is_more_fixed,
+		b.bicycle_code, b.bicycle_name, b.photo, b.hour_rent, b.day_rent, b.month_rent,
+		c.id, c.username, c.name, c.phone_number,
+		d.province, d.city, d.area, d.location_info,
+		e.coupon_id, e.coupon_name,e.discount
 		from `order` a
 		left join bicycle b
 		on a.bicycle_id = b.bicycle_code
@@ -52,10 +68,16 @@
 		on a.user_id = c.id
 		left join location d
 		on a.location_id = d.id
+		left join coupon e
+		on a.coupon_id = e.coupon_id
 		where a.state = #{0}
 	</select>
     <select id="selectByUserAndState" parameterType="Order" resultMap="orderResultMap">
-		select a.order_id, a.rent_mode, a.start_time, a.end_time, a.rent, a.remark, a.evaluation, b.bicycle_code, b.bicycle_name, b.photo, b.hour_rent, b.day_rent, b.month_rent, c.username, c.name, c.phone_number, d.province, d.city, d.area, d.location_info
+		select a.order_id, a.rent_mode, a.start_time, a.end_time, a.rent, a.remark, a.evaluation,a.is_more_fixed,
+		b.bicycle_code, b.bicycle_name, b.photo, b.hour_rent, b.day_rent, b.month_rent,
+		c.id, c.username, c.name, c.phone_number,
+		d.province, d.city, d.area, d.location_info,
+		e.coupon_id, e.coupon_name,e.discount
 		from `order` a
 		left join bicycle b
 		on a.bicycle_id = b.bicycle_code
@@ -63,6 +85,8 @@
 		on a.user_id = c.id
 		left join location d
 		on a.location_id = d.id
+		left join coupon e
+		on a.coupon_id = e.coupon_id
 		where a.state = #{state}
 		and a.user_id = #{userId}
 	</select>
@@ -71,7 +95,7 @@
 		values(#{orderId},#{userId},#{bicycleId},#{locationId},#{rentMode},#{startTime},#{state},#{remark})
 	</insert>
     <update id="updateOrderIng" parameterType="Order">
-		update `order` set end_time=#{endTime},rent=#{rent},state=#{state},evaluation=#{evaluation}
+		update `order` set end_time=#{endTime},rent=#{rent},state=#{state},evaluation=#{evaluation},coupon_id=#{couponId},is_more_fixed=#{isMoreFixed}
 		where order_id=#{orderId}
 	</update>
     <update id="updateOrderEnd" parameterType="Integer">

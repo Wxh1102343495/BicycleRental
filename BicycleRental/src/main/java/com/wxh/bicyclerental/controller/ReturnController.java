@@ -9,15 +9,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+
+/**
+ * 支付宝同步通知
+ */
 @Controller
 public class ReturnController {
 
@@ -59,7 +61,7 @@ public class ReturnController {
             //付款金额
             String total_amount = request.getParameter("total_amount");
             if(orderService.updateOrderEnd(out_trade_no)>0) {
-                String url_to = "http://localhost:9521/#/dashboard";
+                String url_to = "http://localhost:9521/#/paySuccess/paySuccess";
                 return new ModelAndView(new RedirectView(url_to));
             }else {
                 return null;

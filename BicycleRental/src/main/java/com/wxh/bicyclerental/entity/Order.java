@@ -18,6 +18,11 @@ public class Order implements Serializable {
     private Integer userId;
 
     /**
+     * 优惠券id
+     */
+    private Integer couponId;
+
+    /**
      * 自行车编码
      */
     private Long bicycleId;
@@ -67,6 +72,11 @@ public class Order implements Serializable {
     private String evaluation;
 
     /**
+     * 是否超出服务区(0:否，1:是)
+     */
+    private Integer isMoreFixed;
+
+    /**
      * 关联用户
      */
     private User user;
@@ -81,6 +91,35 @@ public class Order implements Serializable {
      */
     private Location location;
 
+    /**
+     * 关联优惠券
+     */
+    private Coupon coupon;
+
+
+    public Integer getIsMoreFixed() {
+        return isMoreFixed;
+    }
+
+    public void setIsMoreFixed(Integer isMoreFixed) {
+        this.isMoreFixed = isMoreFixed;
+    }
+
+    public Integer getCouponId() {
+        return couponId;
+    }
+
+    public void setCouponId(Integer couponId) {
+        this.couponId = couponId;
+    }
+
+    public Coupon getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(Coupon coupon) {
+        this.coupon = coupon;
+    }
 
     public User getUser() {
         return user;

@@ -2,19 +2,19 @@ package com.wxh.bicyclerental.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wxh.bicyclerental.entity.Bicycle;
 import com.wxh.bicyclerental.entity.ErrorInfo;
 import com.wxh.bicyclerental.service.IErrorInfoService;
-import com.wxh.bicyclerental.utils.CodeUtil;
 import com.wxh.bicyclerental.utils.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 自行车故障管理
+ */
 @Api
 @RestController
 @RequestMapping("/errorInfo")
