@@ -132,7 +132,7 @@ public class OrderController {
             //计算总租金
             float rant = hours * hourRent;
             rquestOrder.setRent(rant);
-            int response = orderService.updateOrderEnd(rquestOrder);
+            int response = orderService.updateOrderIng(rquestOrder);
             if(response>0) {
                 return Result.ok().data("成功");
             }
@@ -157,7 +157,7 @@ public class OrderController {
                     rquestOrder.setRent(rant);
                 }
             }
-            int response = orderService.updateOrderEnd(rquestOrder);
+            int response = orderService.updateOrderIng(rquestOrder);
             if(response>0) {
                 return Result.ok().data("成功");
             }
@@ -181,7 +181,7 @@ public class OrderController {
                     rquestOrder.setRent(rant);
                 }
             }
-            int response = orderService.updateOrderEnd(rquestOrder);
+            int response = orderService.updateOrderIng(rquestOrder);
             if(response>0) {
                 return Result.ok().data("成功");
             }

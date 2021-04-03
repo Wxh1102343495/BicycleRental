@@ -2,9 +2,13 @@ package com.wxh.bicyclerental.controller;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
+import com.wxh.bicyclerental.service.IOrderService;
 import com.wxh.bicyclerental.utils.PayUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +20,12 @@ import java.util.Map;
 
 @Controller
 public class ReturnController {
+
+    @Autowired
+    private IOrderService orderService;
+
     @RequestMapping("/getReturn")
-    public void getReturn(HttpServletRequest request, HttpServletResponse response) throws AlipayApiException, IOException {
+    public ModelAndView getReturn(HttpServletRequest request, HttpServletResponse response) throws AlipayApiException, IOException {
         //获取支付宝post过来的反馈信息
         Map<String,String> params = new HashMap<String, String>();
         Map<String,String[]> requestParams = request.getParameterMap();
@@ -42,18 +50,22 @@ public class ReturnController {
          * 3、校验通知中的seller_id(或者sell_email)是否为out_trade_no这笔单据的对应操作方
          * 4、校验app_id是否为该商户本身
          * */
-        response.setContentType("text/html;charset=utf-8");
-        PrintWriter out = response.getWriter();
         if(signVerified) {//验证成功
+            //将订单状态改为已完成
             //商户订单号
-            String out_trade_no = request.getParameter("out_trade_no");
+            Integer out_trade_no = Integer.parseInt(request.getParameter("out_trade_no"));
             //支付宝交易号
             String trade_no = request.getParameter("trade_no");
             //付款金额
             String total_amount = request.getParameter("total_amount");
-            out.println("trade_no"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
+            if(orderService.updateOrderEnd(out_trade_no)>0) {
+                String url_to = "http://localhost:9521/#/dashboard";
+                return new ModelAndView(new RedirectView(url_to));
+            }else {
+                return null;
+            }
         }else {//验证失败
-            out.println("验签失败");
+            return null;
         }
     }
 }

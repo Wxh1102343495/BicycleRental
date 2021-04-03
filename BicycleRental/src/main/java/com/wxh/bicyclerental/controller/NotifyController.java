@@ -2,10 +2,14 @@ package com.wxh.bicyclerental.controller;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
+import com.wxh.bicyclerental.service.IOrderService;
 import com.wxh.bicyclerental.utils.PayUtil;
 import com.wxh.bicyclerental.utils.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,9 +21,13 @@ import java.util.Map;
 
 @Controller
 public class NotifyController {
+
+    @Autowired
+    private IOrderService orderService;
+
     //接收支付宝返回的异步通知的信息
     @RequestMapping("/getNotify")
-    public void getNotify(HttpServletRequest request, HttpServletResponse response) throws AlipayApiException, IOException {
+    public ModelAndView getNotify(HttpServletRequest request, HttpServletResponse response) throws AlipayApiException, IOException {
         //获取支付宝post过来的反馈信息
         Map<String,String> params = new HashMap<String, String>();
         Map<String,String[]> requestParams = request.getParameterMap();
@@ -44,27 +52,21 @@ public class NotifyController {
         * 3、校验通知中的seller_id(或者sell_email)是否为out_trade_no这笔单据的对应操作方
         * 4、校验app_id是否为该商户本身
         * */
-        response.setContentType("text/html;charset=utf-8");
-        PrintWriter out = response.getWriter();
         if(signVerified) {//验证成功
             //商户订单号
-            String out_trade_no = request.getParameter("out_trade_no");
+            Integer out_trade_no = Integer.parseInt(request.getParameter("out_trade_no"));
             //支付宝交易号
             String trade_no = request.getParameter("trade_no");
             //交易状态
             String trade_status = request.getParameter("trade_status");
-            if(trade_status.equals("TRADE_FINISHED")) {
-                //判断该笔订单是否在商户网站中已经做过处理
-                //如果没有则根据订单号在商户网站的订单系统中查出该笔订单明细并执行商户的业务程序
-                //如果有处理，不执行商户的业务程序
-                //注意，付款成功后支付宝系统发送该交易状态
-                //注意退款日期超过可退款期限后支付宝系统发送交易状态通知
-            }else if(trade_status.equals("TRADE_SUCCESS")) {
-
+            if(orderService.updateOrderEnd(out_trade_no)>0) {
+                String url_to = "http://localhost:9521/#/dashboard";
+                return new ModelAndView(new RedirectView(url_to));
+            }else {
+                return null;
             }
-            out.println("success");
         }else {//验证失败
-            out.println("fail");
+            return null;
         }
 
     }
