@@ -18,6 +18,7 @@
         </association>
         <association property="user" javaType="User">
             <result column="username" property="username"/>
+            <result column="name" property="name"/>
             <result column="phone_number" property="phoneNumber"/>
         </association>
     </resultMap>
@@ -27,7 +28,7 @@
     <select id="select" resultMap="error_infoResultMap">
 		select a.id, a.describe, a.location, a.photo_one, a.photo_two,
 		b.bicycle_code, b.bicycle_name, b.photo,
-		c.username, c.phone_number,
+		c.username, c.phone_number,c.name
 		from error_info a
 		left join bicycle b
 		on a.bicycle_id = b.bicycle_code
@@ -36,7 +37,7 @@
 		where a.state = 1
 	</select>
     <insert id="insert" parameterType="ErrorInfo">
-		insert into error_info(user_id,bicycle_id,location,describe,photo_one,photo_two,state) values(#{userId},#{bicycleId},#{location},#{describe},#{photoOne},#{photoTwo},#{state})
+		insert into error_info(user_id,bicycle_id,location,`describe`,photo_one,photo_two,state) values(#{userId},#{bicycleId},#{location},#{describe},#{photoOne},#{photoTwo},#{state})
 	</insert>
     <update id="editErrorInfoState" parameterType="Integer">
 		update error_info set state = 0 where id=#{0}

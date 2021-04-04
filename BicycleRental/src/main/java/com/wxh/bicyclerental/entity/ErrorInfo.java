@@ -16,7 +16,7 @@ public class ErrorInfo implements Serializable {
     /**
      * 自行车编码id
      */
-    private Integer bicycleId;
+    private Long bicycleId;
 
     /**
      * 所在位置（根据定位显示）
@@ -69,11 +69,11 @@ public class ErrorInfo implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getBicycleId() {
+    public Long getBicycleId() {
         return bicycleId;
     }
 
-    public void setBicycleId(Integer bicycleId) {
+    public void setBicycleId(Long bicycleId) {
         this.bicycleId = bicycleId;
     }
 
