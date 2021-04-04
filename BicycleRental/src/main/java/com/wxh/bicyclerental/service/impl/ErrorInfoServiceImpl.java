@@ -29,11 +29,6 @@ public class ErrorInfoServiceImpl implements IErrorInfoService {
     }
 
     @Override
-    public int delete(Integer id) {
-        return errorInfoMapper.delete(id);
-    }
-
-    @Override
     public int editErrorInfoState(Integer id) {
         return errorInfoMapper.editErrorInfoState(id);
     }

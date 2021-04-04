@@ -6,8 +6,10 @@
         <id column="id" property="id"/>
         <result column="user_id" property="userId"/>
         <result column="bicycle_id" property="bicycleId"/>
-        <result column="location_id" property="locationId"/>
+        <result column="location" property="location"/>
         <result column="describe" property="describe"/>
+        <result column="photo_one" property="photoOne"/>
+        <result column="photo_two" property="photoTwo"/>
         <result column="state" property="state"/>
         <association property="bicycle" javaType="Bicycle">
             <result column="bicycle_code" property="bicycleCode"/>
@@ -18,34 +20,24 @@
             <result column="username" property="username"/>
             <result column="phone_number" property="phoneNumber"/>
         </association>
-        <association property="location" javaType="Location">
-            <result column="province" property="province"/>
-            <result column="city" property="city"/>
-            <result column="area" property="area"/>
-            <result column="location_info" property="locationInfo"/>
-        </association>
     </resultMap>
     <select id="selectOne" parameterType="Integer" resultType="ErrorInfo">
 		select * from error_info where id=#{0}
 	</select>
     <select id="select" resultMap="error_infoResultMap">
-		select a.id, a.describe, b.bicycle_code, b.bicycle_name, b.photo, c.username, c.phone_number, d.province, d.city, d.area, d.location_info
+		select a.id, a.describe, a.location, a.photo_one, a.photo_two,
+		b.bicycle_code, b.bicycle_name, b.photo,
+		c.username, c.phone_number,
 		from error_info a
 		left join bicycle b
 		on a.bicycle_id = b.bicycle_code
 		left join user c
 		on a.user_id = c.id
-		left join location d
-		on a.location_id = d.id
 		where a.state = 1
-		and b.state = 1
 	</select>
     <insert id="insert" parameterType="ErrorInfo">
-		insert into error_info(user_id,bicycle_id,location_id,describe,state) values(#{userId},#{bicycleId},#{locationId},#{describe},#{state})
+		insert into error_info(user_id,bicycle_id,location,describe,photo_one,photo_two,state) values(#{userId},#{bicycleId},#{location},#{describe},#{photoOne},#{photoTwo},#{state})
 	</insert>
-    <delete id="delete" parameterType="Integer">
-		delete from error_info where id=#{0}
-	</delete>
     <update id="editErrorInfoState" parameterType="Integer">
 		update error_info set state = 0 where id=#{0}
 	</update>

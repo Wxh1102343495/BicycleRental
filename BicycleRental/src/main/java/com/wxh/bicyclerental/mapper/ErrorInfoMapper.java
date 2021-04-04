@@ -11,6 +11,5 @@ public interface ErrorInfoMapper {
     public List<ErrorInfo> select();
     public ErrorInfo selectOne(Integer id);
     public int insert(ErrorInfo errorInfo);
-    public int delete(Integer id);
     public int editErrorInfoState(Integer id);
 }

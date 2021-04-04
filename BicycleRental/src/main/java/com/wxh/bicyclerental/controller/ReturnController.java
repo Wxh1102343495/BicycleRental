@@ -2,13 +2,17 @@ package com.wxh.bicyclerental.controller;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
+import com.wxh.bicyclerental.service.ICouponService;
 import com.wxh.bicyclerental.service.IOrderService;
+import com.wxh.bicyclerental.service.IUserCouponService;
 import com.wxh.bicyclerental.utils.PayUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import sun.security.util.Length;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -25,6 +29,9 @@ public class ReturnController {
 
     @Autowired
     private IOrderService orderService;
+
+    @Autowired
+    private IUserCouponService userCouponService;
 
     @RequestMapping("/getReturn")
     public ModelAndView getReturn(HttpServletRequest request, HttpServletResponse response) throws AlipayApiException, IOException {
@@ -53,18 +60,33 @@ public class ReturnController {
          * 4、校验app_id是否为该商户本身
          * */
         if(signVerified) {//验证成功
-            //将订单状态改为已完成
             //商户订单号
-            Integer out_trade_no = Integer.parseInt(request.getParameter("out_trade_no"));
+            String out_trade_no = request.getParameter("out_trade_no");
             //支付宝交易号
             String trade_no = request.getParameter("trade_no");
             //付款金额
             String total_amount = request.getParameter("total_amount");
-            if(orderService.updateOrderEnd(out_trade_no)>0) {
-                String url_to = "http://localhost:9521/#/paySuccess/paySuccess";
-                return new ModelAndView(new RedirectView(url_to));
+            //实收金额
+            String receipt_amount = request.getParameter("receipt_amount");
+            //判断订单号长度，大于十位是优惠券id，小于十位是订单id
+            if(out_trade_no.length() > 10) {
+                //根据订单号查询中间表中未支付的id
+                Integer id = userCouponService.selectByCouponId(Long.parseLong(out_trade_no));
+                //将优惠券状态改为已支付
+                if(userCouponService.updateState(id) > 0){
+                    String url_to = "http://localhost:9521/#/paySuccess/paySuccess";
+                    return new ModelAndView(new RedirectView(url_to));
+                }else {
+                    return null;
+                }
             }else {
-                return null;
+                //将订单状态改为已完成
+                if(orderService.updateOrderEnd(Integer.parseInt(out_trade_no))>0) {
+                    String url_to = "http://localhost:9521/#/paySuccess/paySuccess";
+                    return new ModelAndView(new RedirectView(url_to));
+                }else {
+                    return null;
+                }
             }
         }else {//验证失败
             return null;

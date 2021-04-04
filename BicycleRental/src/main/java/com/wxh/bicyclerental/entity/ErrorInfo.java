@@ -19,9 +19,9 @@ public class ErrorInfo implements Serializable {
     private Integer bicycleId;
 
     /**
-     * 所在停车点
+     * 所在位置（根据定位显示）
      */
-    private Integer locationId;
+    private String location;
 
     /**
      * 故障描述
@@ -34,6 +34,16 @@ public class ErrorInfo implements Serializable {
     private Integer state;
 
     /**
+     * 故障照片1
+     */
+    private String photoOne;
+
+    /**
+     * 故障照片2
+     */
+    private String photoTwo;
+
+    /**
      * 关联自行车
      */
     private Bicycle bicycle;
@@ -42,43 +52,6 @@ public class ErrorInfo implements Serializable {
      * 关联用户
      */
     private User user;
-
-    /**
-     * 关联地址
-     */
-    private Location location;
-
-    public Integer getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(Integer locationId) {
-        this.locationId = locationId;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public Bicycle getBicycle() {
-        return bicycle;
-    }
-
-    public void setBicycle(Bicycle bicycle) {
-        this.bicycle = bicycle;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public Integer getId() {
         return id;
@@ -104,6 +77,14 @@ public class ErrorInfo implements Serializable {
         this.bicycleId = bicycleId;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public String getDescribe() {
         return describe;
     }
@@ -120,15 +101,49 @@ public class ErrorInfo implements Serializable {
         this.state = state;
     }
 
+    public String getPhotoOne() {
+        return photoOne;
+    }
+
+    public void setPhotoOne(String photoOne) {
+        this.photoOne = photoOne;
+    }
+
+    public String getPhotoTwo() {
+        return photoTwo;
+    }
+
+    public void setPhotoTwo(String photoTwo) {
+        this.photoTwo = photoTwo;
+    }
+
+    public Bicycle getBicycle() {
+        return bicycle;
+    }
+
+    public void setBicycle(Bicycle bicycle) {
+        this.bicycle = bicycle;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "ErrorInfo{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", bicycleId=" + bicycleId +
-                ", locationId=" + locationId +
+                ", location='" + location + '\'' +
                 ", describe='" + describe + '\'' +
                 ", state=" + state +
+                ", photoOne='" + photoOne + '\'' +
+                ", photoTwo='" + photoTwo + '\'' +
                 '}';
     }
 }

@@ -6,7 +6,7 @@ public class Coupon implements Serializable {
     /**
      * 主键优惠券id
      */
-    private Integer couponId;
+    private Long couponId;
 
     /**
      * 优惠券名字
@@ -41,11 +41,11 @@ public class Coupon implements Serializable {
         this.state = state;
     }
 
-    public Integer getCouponId() {
+    public Long getCouponId() {
         return couponId;
     }
 
-    public void setCouponId(Integer couponId) {
+    public void setCouponId(Long couponId) {
         this.couponId = couponId;
     }
 

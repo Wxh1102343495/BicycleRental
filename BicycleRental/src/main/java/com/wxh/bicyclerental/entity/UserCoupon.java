@@ -17,10 +17,10 @@ public class UserCoupon implements Serializable {
     /**
      * 优惠券id
      */
-    private Integer couponId;
+    private Long couponId;
 
     /**
-     * 优惠券状态(1:未使用，0已使用)
+     * 优惠券状态(1:未使用，0:已使用，2:未支付)
      */
     private Integer state;
 
@@ -66,11 +66,11 @@ public class UserCoupon implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getCouponId() {
+    public Long getCouponId() {
         return couponId;
     }
 
-    public void setCouponId(Integer couponId) {
+    public void setCouponId(Long couponId) {
         this.couponId = couponId;
     }
 

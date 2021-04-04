@@ -133,7 +133,7 @@ public class OrderController {
         //中间表id值
         Integer userCouponId = 0;
         if(null != order.getCouponId() && !"".equals(order.getCouponId())) {
-            Integer couponId = order.getCouponId();
+            Long couponId = order.getCouponId();
             //根据userId和couponId查询user_coupon表的id
             UserCoupon userCoupon = new UserCoupon();
             userCoupon.setCouponId(couponId);

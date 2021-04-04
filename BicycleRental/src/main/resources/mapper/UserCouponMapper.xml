@@ -21,7 +21,9 @@
         </association>
     </resultMap>
     <select id="selectCouponByUserName" parameterType="String" resultMap="userCouponResult">
-		select a.*,b.name,b.username,b.phone_number,b.id_number,c.coupon_name,c.coupon_describe,c.discount,c.price
+		select a.*,
+		b.name,b.username,b.phone_number,b.id_number,
+		c.coupon_name,c.coupon_describe,c.discount,c.price
 		from user_coupon a
 		left join user b
 		on a.user_id = b.id
@@ -34,11 +36,33 @@
     <select id="selectByUidAndCid" parameterType="UserCoupon" resultType="Integer">
 		select id from user_coupon where user_id = #{userId} and coupon_id = #{couponId}
 	</select>
+    <select id="selectByUserId" parameterType="Integer" resultMap="userCouponResult">
+		select a.*,c.coupon_name,c.coupon_describe,c.discount,c.price
+		from user_coupon a
+		left join coupon c
+		on a.coupon_id = c.coupon_id
+		where a.user_id = #{0}
+		and a.state = 2
+	</select>
+	<select id="selectAll" parameterType="String" resultMap="userCouponResult">
+		select a.*,
+		c.coupon_name,c.coupon_describe,c.discount,c.price
+		from user_coupon a
+		left join user b
+		on a.user_id = b.id
+		left join coupon c
+		on a.coupon_id = c.coupon_id
+		where b.username=#{0}
+	</select>
     <insert id="insert" parameterType="UserCoupon">
 		insert into user_coupon(user_id,coupon_id,state) values(#{userId},#{couponId},#{state})
 	</insert>
     <update id="delete" parameterType="Integer">
 		update user_coupon set state = 0
+		where id=#{0}
+	</update>
+    <update id="updateState" parameterType="Integer">
+		update user_coupon set state = 1
 		where id=#{0}
 	</update>
 </mapper>

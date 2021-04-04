@@ -20,7 +20,7 @@ public class Order implements Serializable {
     /**
      * 优惠券id
      */
-    private Integer couponId;
+    private Long couponId;
 
     /**
      * 自行车编码
@@ -105,11 +105,11 @@ public class Order implements Serializable {
         this.isMoreFixed = isMoreFixed;
     }
 
-    public Integer getCouponId() {
+    public Long getCouponId() {
         return couponId;
     }
 
-    public void setCouponId(Integer couponId) {
+    public void setCouponId(Long couponId) {
         this.couponId = couponId;
     }
 

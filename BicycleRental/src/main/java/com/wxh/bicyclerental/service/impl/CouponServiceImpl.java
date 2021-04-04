@@ -15,7 +15,7 @@ public class CouponServiceImpl implements ICouponService {
     private CouponMapper couponMapper;
 
     @Override
-    public Coupon selectOne(Integer couponId) {
+    public Coupon selectOne(Long couponId) {
         return couponMapper.selectOne(couponId);
     }
 
@@ -30,7 +30,7 @@ public class CouponServiceImpl implements ICouponService {
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return couponMapper.delete(id);
     }
 

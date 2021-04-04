@@ -5,10 +5,10 @@ import com.wxh.bicyclerental.entity.Coupon;
 import java.util.List;
 
 public interface ICouponService {
-    public Coupon selectOne(Integer couponId);
+    public Coupon selectOne(Long couponId);
     public List<Coupon> select();
     public int insert(Coupon coupon);
-    public int delete(Integer id);
+    public int delete(Long id);
     public int update(Coupon coupon);
     public List<Coupon> selectByState(Integer state);
 }

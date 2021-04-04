@@ -16,14 +16,14 @@ public class PayUtil {
     //支付宝公钥
     public static String ALIPAY_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwdyGr9tjaCs5LFA/OHgq4/2qS9jE8MdsRwxIlyuwDGrwK8QPaTV5VUGsAk1nKAxGTxN1xCxI33bLO/oMlqSN+ghf3iKPAz7fZ499qeKX1XVm5Ie48b+1JMhc+VbF/H3pSCvGiersKni0MIBia+CLeus3YUfRwt+Ro+sKeBUq2ug2OIEK+5ZgQroRiVsfmXZex8tjnbhi3OMXhYMOhMcIag2aSOYMxHciXuNMCXr4zrkaH7BETZs/Ml1M7anGnqRmkj5S2WcGBIe3zgAfApXXXSWqyDBDUnZtb8BM3o7CgWMT8COqqhTG4MqWGZnJrDSfpbu2nqtBfSGXdXW3vKD/swIDAQAB";
     //这是沙箱接口路径,正式路径为https://openapi.alipay.com/gateway.do
-    public static String GATEWAY_URL ="https://openapi.alipaydev.com/gateway.do";
+    public static String GATEWAY_URL ="http://568zm8.natappfree.cc/gateway.do";
 
     //签名方式
     public static String SIGN_TYPE = "RSA2";
     //支付宝异步通知路径,付款完毕后会异步调用本项目的方法,必须为公网地址
-    public static String NOTIFY_URL = "http://qmypvv.natappfree.cc/getNotify";
+    public static String NOTIFY_URL = "http://568zm8.natappfree.cc/getNotify";
     //支付宝同步通知路径,也就是当付款完毕后跳转本项目的页面,可以不是公网地址
-    public static String RETURN_URL = "http://qmypvv.natappfree.cc/getReturn";
+    public static String RETURN_URL = "http://emdpw2.natappfree.cc/getReturn";
     //日志地址
     public static  String log_path = "D:\\";
 

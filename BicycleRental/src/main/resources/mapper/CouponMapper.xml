@@ -10,7 +10,7 @@
         <result column="price" property="price"/>
         <result column="state" property="state"/>
     </resultMap>
-    <select id="selectOne" parameterType="Integer" resultType="Coupon">
+    <select id="selectOne" parameterType="Long" resultType="Coupon">
 		select * from coupon where coupon_id=#{0}
 	</select>
     <select id="select" resultMap="couponResultMap">
@@ -22,7 +22,7 @@
     <insert id="insert" parameterType="Coupon">
 		insert into coupon(coupon_id,coupon_name,coupon_describe,discount,price,state) values(#{couponId},#{couponName},#{couponDescribe},#{discount},#{price},#{state})
 	</insert>
-    <delete id="delete" parameterType="Integer">
+    <delete id="delete" parameterType="Long">
 		delete from coupon where coupon_id=#{0}
 	</delete>
     <update id="update" parameterType="Coupon">
