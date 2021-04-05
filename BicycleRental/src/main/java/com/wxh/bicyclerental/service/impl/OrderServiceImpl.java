@@ -24,6 +24,16 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
+    public List<Order> selectAll() {
+        return orderMapper.selectAll();
+    }
+
+    @Override
+    public List<Order> selectNeedReturnPay() {
+        return orderMapper.selectNeedReturnPay();
+    }
+
+    @Override
     public int insert(Order order) {
         return orderMapper.insert(order);
     }
@@ -46,5 +56,15 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public int delete(Integer orderId) {
         return orderMapper.delete(orderId);
+    }
+
+    @Override
+    public int updateNeedReturnPay(Order order) {
+        return orderMapper.updateNeedReturnPay(order);
+    }
+
+    @Override
+    public int updateReturnPayOk(Integer orderId) {
+        return orderMapper.updateReturnPayOk(orderId);
     }
 }

@@ -6,6 +6,7 @@ import com.wxh.bicyclerental.service.ICouponService;
 import com.wxh.bicyclerental.service.IOrderService;
 import com.wxh.bicyclerental.service.IUserCouponService;
 import com.wxh.bicyclerental.utils.PayUtil;
+import com.wxh.bicyclerental.utils.uId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,20 +62,24 @@ public class ReturnController {
          * */
         if(signVerified) {//验证成功
             //商户订单号
-            String out_trade_no = request.getParameter("out_trade_no");
+            String out_trade_no_noSub = request.getParameter("out_trade_no");
             //支付宝交易号
             String trade_no = request.getParameter("trade_no");
             //付款金额
             String total_amount = request.getParameter("total_amount");
             //实收金额
             String receipt_amount = request.getParameter("receipt_amount");
+            //获取当前支付用户的id
+            int length = uId.getUuId().length();
+            //截取返回的订单号
+            String out_trade_no = out_trade_no_noSub.substring(length);
             //判断订单号长度，大于十位是优惠券id，小于十位是订单id
             if(out_trade_no.length() > 10) {
                 //根据订单号查询中间表中未支付的id
                 Integer id = userCouponService.selectByCouponId(Long.parseLong(out_trade_no));
                 //将优惠券状态改为已支付
                 if(userCouponService.updateState(id) > 0){
-                    String url_to = "http://localhost:9521/#/paySuccess/paySuccess";
+                    String url_to = "http://127.0.0.1:9521/#/paySuccess/paySuccess";
                     return new ModelAndView(new RedirectView(url_to));
                 }else {
                     return null;
@@ -82,7 +87,7 @@ public class ReturnController {
             }else {
                 //将订单状态改为已完成
                 if(orderService.updateOrderEnd(Integer.parseInt(out_trade_no))>0) {
-                    String url_to = "http://localhost:9521/#/paySuccess/paySuccess";
+                    String url_to = "http://127.0.0.1:9521/#/paySuccess/paySuccess";
                     return new ModelAndView(new RedirectView(url_to));
                 }else {
                     return null;

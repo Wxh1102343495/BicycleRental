@@ -36,6 +36,9 @@
     <select id="selectByUidAndCid" parameterType="UserCoupon" resultType="Integer">
 		select id from user_coupon where user_id = #{userId} and coupon_id = #{couponId}
 	</select>
+	<select id="selectByCouponId" parameterType="Long" resultType="Integer">
+		select id from user_coupon where coupon_id = #{0} and state = 2
+	</select>
     <select id="selectByUserId" parameterType="Integer" resultMap="userCouponResult">
 		select a.*,c.coupon_name,c.coupon_describe,c.discount,c.price
 		from user_coupon a

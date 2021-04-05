@@ -1,5 +1,7 @@
 package com.wxh.bicyclerental.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wxh.bicyclerental.entity.*;
 import com.wxh.bicyclerental.service.ICouponService;
 import com.wxh.bicyclerental.service.IOrderService;
@@ -15,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -82,6 +86,21 @@ public class OrderController {
     }
 
     /**
+     * 分页查询所有订单
+     */
+    @GetMapping("/pageFindAllOrder")
+    @ApiOperation("分页查询所有订单")
+    public Result pageFindAllOrder(@RequestParam int pageNo, @RequestParam int pageSize) {
+        Map map = new HashMap<>();
+        //使用PageHelper分页插件
+        PageHelper.offsetPage(pageNo, pageSize);
+        PageInfo<Order> orderList = PageInfo.of(orderService.selectAll());
+        map.put("total", orderList.getTotal());
+        map.put("data", orderList.getList());
+        return Result.ok().data(map);
+    }
+
+    /**
      * 删除订单
      */
     @PostMapping("/removeOrder")
@@ -108,6 +127,48 @@ public class OrderController {
             return Result.ok().data(order);
         }else {
             return Result.ok().data("");
+        }
+    }
+
+    /**
+     * 查询申请退款的订单信息
+     */
+    @GetMapping("/findNeedReturnPay")
+    @ApiOperation("查询申请退款的订单信息")
+    public Result findNeedReturnPay(@RequestParam int pageNo, @RequestParam int pageSize) {
+        Map map = new HashMap<>();
+        //使用PageHelper分页插件
+        PageHelper.offsetPage(pageNo, pageSize);
+        PageInfo<Order> orderList = PageInfo.of(orderService.selectNeedReturnPay());
+        map.put("total", orderList.getTotal());
+        map.put("data", orderList.getList());
+        return Result.ok().data(map);
+    }
+
+    /**
+     * 订单申请退款
+     */
+    @PostMapping("/needReturnPay")
+    @ApiOperation("订单申请退款")
+    public Result needReturnPay(@RequestBody Order order) {
+        if (orderService.updateNeedReturnPay(order) > 0) {
+            return Result.ok().data("成功");
+        } else {
+            return Result.error().data("失败");
+        }
+    }
+
+    /**
+     * 订单申请退款处理完成
+     */
+    @PostMapping("/needReturnPayFinash")
+    @ApiOperation("订单申请退款处理完成")
+    public Result needReturnPayFinash(@RequestBody Order order) {
+        Integer orderId = order.getOrderId();
+        if (orderService.updateReturnPayOk(orderId) > 0) {
+            return Result.ok().data("成功");
+        } else {
+            return Result.error().data("失败");
         }
     }
 

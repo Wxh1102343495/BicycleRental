@@ -77,6 +77,16 @@ public class Order implements Serializable {
     private Integer isMoreFixed;
 
     /**
+     * 退款状态(0:未退款，1:已退款，2:申请退款)默认为0
+     */
+    private Integer stateReturnPay;
+
+    /**
+     * 退款原因
+     */
+    private String returnPayCause;
+
+    /**
      * 关联用户
      */
     private User user;
@@ -230,6 +240,22 @@ public class Order implements Serializable {
 
     public void setRentMode(String rentMode) {
         this.rentMode = rentMode;
+    }
+
+    public Integer getStateReturnPay() {
+        return stateReturnPay;
+    }
+
+    public void setStateReturnPay(Integer stateReturnPay) {
+        this.stateReturnPay = stateReturnPay;
+    }
+
+    public String getReturnPayCause() {
+        return returnPayCause;
+    }
+
+    public void setReturnPayCause(String returnPayCause) {
+        this.returnPayCause = returnPayCause;
     }
 
     @Override
