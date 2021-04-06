@@ -2,6 +2,10 @@ package com.wxh.bicyclerental.entity;
 
 import java.io.Serializable;
 
+/**
+ * @author xhwang
+ * 故障表
+ */
 public class ErrorInfo implements Serializable {
     /**
      * 主键id

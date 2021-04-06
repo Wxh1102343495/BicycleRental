@@ -6,6 +6,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author xhwang
+ * 订单表
+ */
 public class Order implements Serializable {
     /**
      * 订单编号

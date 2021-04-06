@@ -2,6 +2,10 @@ package com.wxh.bicyclerental.entity;
 
 import java.io.Serializable;
 
+/**
+ * @author xhwang
+ * 用户和优惠券中间表
+ */
 public class UserCoupon implements Serializable {
 
     /**

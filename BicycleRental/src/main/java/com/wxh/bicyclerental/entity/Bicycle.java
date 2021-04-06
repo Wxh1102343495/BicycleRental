@@ -2,6 +2,10 @@ package com.wxh.bicyclerental.entity;
 
 import java.io.Serializable;
 
+/**
+ * @author xhwang
+ * 自行车表
+ */
 public class Bicycle implements Serializable {
     /**
      * 主键自行车编码

@@ -2,6 +2,10 @@ package com.wxh.bicyclerental.entity;
 
 import java.io.Serializable;
 
+/**
+ * @author xhwang
+ * 用户表
+ */
 public class User implements Serializable {
     /**
      * 主键id

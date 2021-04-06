@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxh.bicyclerental.mapper.AdviseMapper">
+    <resultMap type="Advise" id="adviceResultMap">
+        <id column="id" property="id"/>
+        <result column="type" property="type"/>
+        <result column="describe" property="describe"/>
+        <result column="user_id" property="userId"/>
+        <result column="state" property="state"/>
+        <association property="user" javaType="User">
+            <result column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="username" property="username"/>
+            <result column="phone_number" property="phoneNumber"/>
+        </association>
+    </resultMap>
+    <select id="select" parameterType="Integer" resultMap="adviceResultMap">
+		select a.id,a.type,a.describe,a.user_id,b.name,b.username,b.phone_number
+		from advise a
+		left join `user` b
+		on a.user_id = b.id
+		where a.state = #{0}
+	</select>
+    <insert id="insert" parameterType="Advise">
+		insert into advise(`type`,`describe`,user_id,state) values(#{type},#{describe},#{userId},#{state})
+	</insert>
+    <update id="delete" parameterType="Integer">
+		update advise set state = 1 where id=#{0}
+	</update>
+</mapper>

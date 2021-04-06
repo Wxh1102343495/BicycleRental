@@ -40,7 +40,6 @@ public class BicycleController {
             return Result.ok().data("添加成功");
         }else {
             return Result.error().data("添加失败");
-
         }
     }
 

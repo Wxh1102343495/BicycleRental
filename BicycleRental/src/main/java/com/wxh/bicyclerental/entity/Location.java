@@ -2,6 +2,10 @@ package com.wxh.bicyclerental.entity;
 
 import java.io.Serializable;
 
+/**
+ * @author xhwang
+ * 地址表
+ */
 public class Location implements Serializable {
     /**
      * 主键id
