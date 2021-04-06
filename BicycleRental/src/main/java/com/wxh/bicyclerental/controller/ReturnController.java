@@ -79,8 +79,9 @@ public class ReturnController {
                 Integer id = userCouponService.selectByCouponId(Long.parseLong(out_trade_no));
                 //将优惠券状态改为已支付
                 if(userCouponService.updateState(id) > 0){
-                    String url_to = "http://127.0.0.1:9521/#/paySuccess/paySuccess";
-                    return new ModelAndView(new RedirectView(url_to));
+                    ModelAndView modelAndView = new ModelAndView();
+                    modelAndView.setViewName("redirect:http://127.0.0.1:9521/#/paySuccess/paySuccess");
+                    return modelAndView;
                 }else {
                     return null;
                 }
